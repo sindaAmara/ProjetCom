@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact - Journal IUT Info</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bitter:wght@400;600;700&family=Source+Sans+3:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        .contact-container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 60px 20px;
+        }
+
+        .contact-intro {
+            text-align: center;
+            margin-bottom: 50px;
+            animation: fadeIn 0.6s ease-out;
+        }
+
+        .contact-intro h1 {
+            font-size: 42px;
+            margin-bottom: 20px;
+        }
+
+        .contact-intro p {
+            font-size: 18px;
+            color: var(--text-light);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .contact-form {
+            background: var(--bg-white);
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: var(--shadow-lg);
+            animation: fadeIn 0.8s ease-out 0.2s backwards;
+        }
+
+        .form-group {
+            margin-bottom: 25px;
+        }
+
+        .form-group label {
+            display: block;
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: var(--text-dark);
+        }
+
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            padding: 12px 16px;
+            border: 2px solid var(--border-color);
+            border-radius: 8px;
+            font-size: 15px;
+            font-family: 'Source Sans 3', sans-serif;
+            transition: border-color 0.3s ease;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: var(--secondary-color);
+        }
+
+        .form-group textarea {
+            min-height: 150px;
+            resize: vertical;
+        }
+
+        .submit-btn {
+            background: linear-gradient(135deg, var(--secondary-color), #764ba2);
+            color: white;
+            border: none;
+            padding: 14px 32px;
+            font-size: 16px;
+            font-weight: 700;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            width: 100%;
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(102, 126, 234, 0.3);
+        }
+
+        .contact-info {
+            margin-top: 50px;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+            animation: fadeIn 1s ease-out 0.4s backwards;
+        }
+
+        .info-card {
+            background: var(--bg-white);
+            padding: 30px;
+            border-radius: 12px;
+            text-align: center;
+            box-shadow: var(--shadow);
+            transition: transform 0.3s ease;
+        }
+
+        .info-card:hover {
+            transform: translateY(-4px);
+        }
+
+        .info-icon {
+            font-size: 36px;
+            margin-bottom: 15px;
+        }
+
+        .info-card h3 {
+            font-size: 18px;
+            margin-bottom: 10px;
+            color: var(--text-dark);
+        }
+
+        .info-card p {
+            font-size: 14px;
+            color: var(--text-light);
+            line-height: 1.6;
+        }
+
+        @media (max-width: 768px) {
+            .contact-intro h1 {
+                font-size: 32px;
+            }
+
+            .contact-form {
+                padding: 30px 20px;
+            }
+
+            .contact-info {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="main-header">
+        <div class="header-content">
+            <div class="logo-section">
+                <div class="journal-logo">
+                    <span class="logo-text">IUT</span>
+                    <span class="logo-subtitle">JOURNAL INTERNE</span>
+                </div>
+            </div>
+            <nav class="main-nav">
+                <ul class="nav-list">
+                    <li class="nav-item">
+                        <a href="index.html">Accueil</a>
+                    </li>
+                    <li class="nav-item has-dropdown">
+                        <a href="#" class="dropdown-trigger">Info <span class="arrow">▾</span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="info-formations.html">Formations & SAE</a></li>
+                            <li><a href="info-erasmus.html">Erasmus</a></li>
+                            <li><a href="info-musee.html">Musée de l'Informatique</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item has-dropdown">
+                        <a href="#" class="dropdown-trigger">Event <span class="arrow">▾</span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="event-bde.html">BDE & Soirées</a></li>
+                            <li><a href="event-tournois.html">Tournois</a></li>
+                            <li><a href="event-sport.html">Sport & Loisirs</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item has-dropdown">
+                        <a href="#" class="dropdown-trigger">Article <span class="arrow">▾</span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="article-debouches.html">Débouchés & Métiers</a></li>
+                            <li><a href="article-alumni.html">Témoignages Alumni</a></li>
+                            <li><a href="article-secteur.html">Secteur Informatique</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item active">
+                        <a href="contact.html">Contact</a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <div class="contact-container">
+        <div class="contact-intro">
+            <h1>Contactez-nous</h1>
+            <p>Vous avez une idée d'article ? Une suggestion ? Ou vous souhaitez simplement contribuer au journal ? N'hésitez pas à nous contacter !</p>
+        </div>
+
+        <div class="contact-form">
+            <h2 style="margin-bottom: 30px; text-align: center;">Proposer un article</h2>
+            <div class="form-group">
+                <label for="name">Nom et Prénom *</label>
+                <input type="text" id="name" name="name" required>
+            </div>
+
+            <div class="form-group">
+                <label for="email">Email *</label>
+                <input type="email" id="email" name="email" required>
+            </div>
+
+            <div class="form-group">
+                <label for="classe">Classe</label>
+                <select id="classe" name="classe">
+                    <option value="">Sélectionnez votre classe</option>
+                    <option value="but1">BUT 1</option>
+                    <option value="but2">BUT 2</option>
+                    <option value="but3">BUT 3</option>
+                    <option value="autre">Autre</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="rubrique">Rubrique souhaitée *</label>
+                <select id="rubrique" name="rubrique" required>
+                    <option value="">Choisissez une rubrique</option>
+                    <option value="vie-etudiante">Vie étudiante (BDE, soirées, tournois)</option>
+                    <option value="formations">Formations & SAE</option>
+                    <option value="erasmus">Erasmus</option>
+                    <option value="debouches">Débouchés & Métiers</option>
+                    <option value="alumni">Témoignages Alumni</option>
+                    <option value="secteur">Secteur Informatique</option>
+                    <option value="autre">Autre</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="sujet">Sujet de l'article *</label>
+                <input type="text" id="sujet" name="sujet" placeholder="Ex: Mon expérience Erasmus en Espagne" required>
+            </div>
+
+            <div class="form-group">
+                <label for="message">Description / Contenu de l'article *</label>
+                <textarea id="message" name="message" placeholder="Décrivez votre idée d'article ou collez directement votre contenu..." required></textarea>
+            </div>
+
+            <button type="submit" class="submit-btn">Envoyer ma proposition</button>
+        </div>
+
+        <div class="contact-info">
+            <div class="info-card">
+                <div class="info-icon">📧</div>
+                <h3>Email</h3>
+                <p>journal.iut-info@univ-amu.fr</p>
+            </div>
+
+            <div class="info-card">
+                <div class="info-icon">📍</div>
+                <h3>Adresse</h3>
+                <p>IUT Aix-Marseille<br>Département Informatique<br>Aix-en-Provence</p>
+            </div>
+
+            <div class="info-card">
+                <div class="info-icon">👥</div>
+                <h3>Rédaction</h3>
+                <p>Groupe de 3 rédacteurs par classe de seconde année</p>
+            </div>
+        </div>
+    </div>
+
+    <footer class="main-footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>À Propos</h4>
+                    <p>Journal interne du département informatique de l'IUT Aix-Marseille Université. Réalisé par les étudiants de seconde année.</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Rubriques</h4>
+                    <ul>
+                        <li><a href="info-formations.html">Formations & SAE</a></li>
+                        <li><a href="event-bde.html">Vie Étudiante</a></li>
+                        <li><a href="article-debouches.html">Débouchés</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Contact</h4>
+                    <p>IUT Aix-Marseille Université<br>Département Informatique<br>Aix-en-Provence</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 Journal IUT Info - Tous droits réservés</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script>
+        // Handle form submission
+        document.querySelector('.contact-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Merci pour votre proposition ! L\'équipe de rédaction la traitera prochainement.');
+            this.reset();
+        });
+    </script>
+</body>
+</html>
