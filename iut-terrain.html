@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BDELive – Solutions numériques pour le BDE | Journal IUT Info</title>
+    <title>L'IUT entre sur le terrain ! | Journal IUT Info</title>
     <link rel="stylesheet" href="styles.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -166,177 +166,71 @@
             padding-left: 24px;
         }
 
-        /* Hero Section avec effet */
         .hero-section { 
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             color: #fff; 
             text-align: center; 
-            padding: 80px 20px; 
-            position: relative;
-            overflow: hidden;
+            padding: 60px 20px; 
         }
-        
-        .hero-section::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            right: -10%;
-            width: 500px;
-            height: 500px;
-            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
-            border-radius: 50%;
-        }
-        
         .hero-title { 
-            font-size: 3rem; 
+            font-size: 2.8rem; 
             font-weight: 700; 
-            margin-bottom: 15px;
-            position: relative;
-            z-index: 1;
+            margin-bottom: 10px; 
         }
         .hero-subtitle { 
-            font-size: 1.4rem; 
-            margin-bottom: 15px;
-            position: relative;
-            z-index: 1;
-            opacity: 0.95;
+            font-size: 1.3rem; 
+            margin-bottom: 10px; 
         }
         .hero-meta { 
-            font-size: 1rem; 
-            opacity: 0.9;
-            position: relative;
-            z-index: 1;
+            font-size: 0.9rem; 
+            opacity: 0.9; 
         }
 
-        /* Article Section */
         .article-section { 
             max-width: 900px; 
             margin: 40px auto; 
             background: #fff; 
-            padding: 50px 40px; 
-            border-radius: 15px; 
-            box-shadow: 0 10px 30px rgba(0,0,0,0.08); 
-        }
-        
-        .article-section h2 { 
-            font-size: 2.2rem; 
-            color: #667eea; 
-            margin-bottom: 25px;
-            padding-bottom: 15px;
-            border-bottom: 3px solid #667eea;
-            position: relative;
-        }
-        
-        .article-section h2::after {
-            content: '';
-            position: absolute;
-            bottom: -3px;
-            left: 0;
-            width: 100px;
-            height: 3px;
-            background: #43e97b;
-        }
-        
-        .article-section h3 { 
-            font-size: 1.8rem; 
-            color: #764ba2; 
-            margin-top: 35px; 
-            margin-bottom: 20px;
-            padding-left: 15px;
-            border-left: 4px solid #764ba2;
-        }
-        
-        .article-section h4 { 
-            font-size: 1.4rem; 
-            color: #667eea; 
-            margin-top: 25px; 
-            margin-bottom: 15px;
-            font-weight: 700;
-        }
-        
-        .article-section p { 
-            margin-bottom: 18px;
-            font-size: 1.05rem;
-            line-height: 1.8;
-            color: #444;
-        }
-        
-        .article-section ul { 
-            margin-bottom: 20px;
-            padding-left: 0;
-            list-style: none;
-        }
-        
-        .article-section li {
-            padding: 12px 15px;
-            margin: 8px 0;
-            background: linear-gradient(to right, #f0f7ff 0%, #ffffff 100%);
-            border-left: 4px solid #667eea;
-            border-radius: 5px;
-            position: relative;
-            padding-left: 40px;
-        }
-        
-        .article-section li::before {
-            content: '✓';
-            position: absolute;
-            left: 15px;
-            color: #43e97b;
-            font-weight: bold;
-            font-size: 1.2rem;
+            padding: 40px 30px; 
+            border-radius: 10px; 
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05); 
         }
 
-        /* Section vidéo */
-        .video-section {
-            background: linear-gradient(135deg, #43e97b 0%, #38d86a 100%);
-            padding: 30px;
-            border-radius: 15px;
-            margin: 0 0 35px 0;
-            text-align: center;
-            box-shadow: 0 10px 25px rgba(67, 233, 123, 0.3);
+        .article-section h2 { 
+            font-size: 2rem; 
+            color: #667eea; 
+            margin: 35px 0 20px 0;
         }
-        
-        .video-section h3 {
-            color: white;
-            margin: 0 0 15px 0;
-            border: none;
-            padding: 0;
-            font-size: 1.5rem;
+
+        .article-section h3 { 
+            font-size: 1.6rem; 
+            color: #764ba2; 
+            margin: 30px 0 15px 0;
         }
-        
-        .video-link {
-            display: inline-block;
-            background: white;
-            color: #43e97b;
-            padding: 12px 30px;
-            border-radius: 50px;
-            text-decoration: none;
-            font-weight: 700;
-            transition: all 0.3s ease;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+
+        .article-section p { 
+            margin-bottom: 20px; 
+            font-size: 1.05rem;
+            line-height: 1.8;
         }
-        
-        .video-link:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+
+        .article-section ul { 
+            list-style: none;
+            padding-left: 0;
+            margin: 20px 0;
         }
-        
-        /* Section problèmes */
-        .problem-section {
-            background: #fff5f5;
-            padding: 25px;
-            border-radius: 10px;
-            border-left: 5px solid #f5576c;
-            margin: 25px 0;
+
+        .article-section li {
+            padding: 8px 0 8px 25px;
+            position: relative;
+            font-size: 1.05rem;
         }
-        
-        /* Section solution */
-        .solution-section {
-            background: #f0fff4;
-            padding: 25px;
-            border-radius: 10px;
-            border-left: 5px solid #43e97b;
-            margin: 25px 0;
+
+        .article-section li:before {
+            content: "●";
+            color: #667eea;
+            font-weight: bold;
+            position: absolute;
+            left: 0;
         }
 
         .author-info {
@@ -345,6 +239,51 @@
             margin-bottom: 25px;
             padding-bottom: 15px;
             border-bottom: 2px solid #e0e0e0;
+        }
+
+        .featured-image {
+            width: 100%;
+            max-width: 100%;
+            height: auto;
+            border-radius: 15px;
+            margin: 30px 0;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        .info-box {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 25px;
+            border-radius: 15px;
+            margin: 30px 0;
+            box-shadow: 0 10px 25px rgba(102, 126, 234, 0.3);
+        }
+
+        .info-box h3 {
+            color: white;
+            margin-top: 0;
+            margin-bottom: 15px;
+            font-size: 1.5rem;
+        }
+
+        .info-box p {
+            margin-bottom: 10px;
+        }
+
+        .info-box strong {
+            font-weight: 700;
+        }
+
+        .highlight-box {
+            background: #f0f7ff;
+            border-left: 4px solid #667eea;
+            padding: 20px;
+            margin: 25px 0;
+            border-radius: 5px;
+        }
+
+        .highlight-box p {
+            margin-bottom: 10px;
         }
 
         footer.main-footer { 
@@ -386,7 +325,7 @@
             }
 
             .hero-title {
-                font-size: 2.2rem;
+                font-size: 2rem;
             }
 
             .article-section {
@@ -444,75 +383,78 @@
 
     <!-- Hero Section -->
     <section class="hero-section">
-        <h1 class="hero-title">BDELive – Solutions numériques pour le BDE</h1>
-        <p class="hero-subtitle">La plateforme qui centralise la vie étudiante et associative de l'IUT Informatique d'Aix</p>
-        <div class="hero-meta">Rubrique : La vie étudiante de l'IUT • 20 janvier 2026</div>
+        <h1 class="hero-title">L'IUT entre sur le terrain !</h1>
+        <p class="hero-subtitle">Tournois sportifs et E-sport : la vie étudiante en action</p>
+        <div class="hero-meta">Rubrique : La vie étudiante de l'IUT • Événement annuel</div>
     </section>
 
     <!-- Article Content -->
     <section class="article-section">
         <div class="container">
-            <!-- Section vidéo -->
-            <div class="video-section">
-                <h3>🎥 Découvrez BDELive en vidéo</h3>
-                <a href="https://youtu.be/EUJoX3saS1o" target="_blank" class="video-link">▶ Regarder la vidéo de présentation</a>
+
+            <p>Entre les partiels, les SAE et les cours en amphi, il est parfois difficile de lever la tête du guidon. Pourtant, l'IUT, ce n'est pas seulement un lieu d'apprentissage : c'est un lieu de vie. Ce mois-ci, le BDE et le BDS (Bureau Des Sports) s'allient pour nous rappeler que la cohésion se forge aussi en dehors des salles de classe.</p>
+
+            <h2>Plus qu'un diplôme : créer une promo soudée</h2>
+
+            <p>L'intégration est le véritable cœur battant de nos années d'études. On oubliera peut-être une formule de mathématiques ou une théorie économique dans dix ans, mais on n'oubliera jamais les moments partagés avec sa promo.</p>
+
+            <p>Participer aux événements de la vie étudiante, c'est briser la glace entre les différents départements. C'est aussi essentiel pour notre santé mentale : le sport et le jeu sont les meilleurs remèdes contre le stress des examens. C'est dans cet esprit de solidarité et de bien-être que l'IUT lance sa grande journée de compétition.</p>
+
+            <!-- Photo entre les deux paragraphes -->
+            <img src="iut-terrain.png" alt="Événements sportifs à l'IUT" class="featured-image">
+
+            <h2>Le grand tournoi sportif</h2>
+
+            <p>Préparez vos baskets, car le gymnase va trembler ! Le Tournoi Inter-Départements revient cette année avec une ambition : déterminer quelle filière règne en maître sur le campus.</p>
+
+            <p>L'ambiance promet d'être électrique. Que vous soyez un athlète confirmé ou un sportif du dimanche, l'important est de mouiller le maillot. Au programme cette année :</p>
+
+            <ul>
+                <li>Basket</li>
+                <li>Fitness</li>
+                <li>Foot</li>
+                <li>Pétanque</li>
+                <li>Step</li>
+                <li>Volley</li>
+                <li>Zumba</li>
+            </ul>
+
+            <p>Au-delà de la performance, c'est le fair-play qui sera à l'honneur. Venez supporter vos camarades, préparez vos meilleures banderoles et montrez que votre département a les meilleurs supporters de l'IUT !</p>
+
+            <h2>Le tournoi E-sport</h2>
+
+            <p>L'IUT vit avec son temps et reconnaît que la performance ne se mesure pas qu'en kilomètres parcourus. La compétition quitte le gymnase pour investir le bâtiment informatique transformé en arène numérique.</p>
+
+            <p>Le tournoi E-sport est l'occasion de mettre en lumière d'autres talents : stratégie, réflexes et communication ultra-rapide. L'ambiance y sera tout aussi surchauffée. Les compétitions phares incluront :</p>
+
+            <ul>
+                <li>Just Dance</li>
+                <li>Dragon Ball FighterZ</li>
+                <li>PC : Super Mario Bros</li>
+                <li>PC : Rhythm Rabbit Rampage : jeu inédit réalisé par une alumni INFO Aix</li>
+            </ul>
+
+            <p>C'est une opportunité unique de montrer que l'E-sport est un vecteur puissant de rassemblement, capable de fédérer autant de passion que le sport traditionnel.</p>
+
+            <h2>À vous de jouer !</h2>
+
+            <div class="highlight-box">
+                <p>Que vous soyez plus à l'aise avec un ballon au pied ou une manette en main, ces tournois sont les vôtres. Ils incarnent la diversité et la richesse de notre IUT.</p>
+
+                <p>Ne restez pas spectateurs de votre vie étudiante. Inscrivez votre équipe, venez encourager vos amis, ou rejoignez simplement l'organisation pour vivre l'événement de l'intérieur. Peu importe le score final, la victoire, c'est d'avoir participé ensemble.</p>
             </div>
 
-            <h2>Création d'un outil incontournable en collaboration avec le BDE</h2>
-            
-            <div class="problem-section">
-                <p><strong>En ce moment, notre département fait face à quelques difficultés dans la gestion de l'information. On a repéré trois problèmes majeurs qui nous freinent :</strong></p>
-                
-                <p>D'abord, <strong>l'information est un peu partout</strong>. Sans plateforme unique, les étudiants doivent naviguer entre les mails, les réseaux sociaux et le bouche-à-oreille, ce qui devient vite illisible et compliqué à suivre.</p>
-                
-                <p>Ensuite, on dépend de <strong>tâches manuelles</strong>, des tâches qui devraient être automatisées. Pour s'inscrire aux événements du BDE, tout se fait à la main, ce qui entraîne souvent des erreurs et des infos qui se perdent.</p>
-                
-                <p>Enfin, il y a une <strong>charge administrative qui pèse sur les bénévoles</strong>. Ils passent beaucoup trop de temps sur des longues tâches, comme les émargements manuels, au détriment de la vie étudiante elle-même.</p>
-                
-                <p><strong>Résultat</strong>, un nouvel étudiant peut vite se sentir perdu ou passer à côté d'opportunités d'intégration, simplement parce qu'il n'est pas au bon endroit au bon moment.</p>
+            <div class="info-box">
+                <h3>📋 Infos Pratiques</h3>
+                <p><strong>📅 Date :</strong> 11 Septembre de chaque année</p>
+                <p><strong>📍 Lieu :</strong> Site Gaston Berger, Aix-en-Provence</p>
+                <p><strong>✍️ Inscriptions :</strong> Au local du BDE ou via les annonces par mail</p>
             </div>
 
-            <h3>Solution au problème</h3>
-            
-            <div class="solution-section">
-                <h4>BDELive c'est quoi ?</h4>
-                <p>Afin de répondre à cette problématique, notre équipe a conçu et développé l'application "BDELive". Cette solution se présente sous la forme d'une application web complète, accessible aux étudiants, aux visiteurs et aux administrateurs du BDE. BDELive est une solution numérique centralisant la communication et l'organisation pour optimiser les interactions entre le BDE et l'ensemble des acteurs du campus.</p>
-            </div>
-
-            <h4>À qui s'adresse BDELive ?</h4>
-            <ul>
-                <li>Les étudiants qui veulent en savoir plus sur l'établissement informatique et comment il fonctionne.</li>
-                <li>Les membres du BDE, pour une gestion simplifiée des événements et autres services.</li>
-                <li>Les administrateurs BDE pour une gestion des utilisateurs.</li>
-                <li>Les enseignants comme les étudiants, vous avez accès à tous les services du BDE.</li>
-            </ul>
-
-            <h4>Que peut-on faire dans BDELive ?</h4>
-            <p><strong>En tant que visiteur du site</strong>, vous avez un accès à l'essentiel du site :</p>
-            <ul>
-                <li><strong>L'équipe :</strong> Visualiser la liste des membres du BDE et leur rôle.</li>
-                <li><strong>Événement :</strong> Visualiser les événements déjà passés et ceux à venir.</li>
-                <li><strong>Actualités :</strong> Lire les articles créés par les membres du BDE ou autre acteur de l'IUT.</li>
-                <li><strong>Planning :</strong> Visualiser votre emploi du temps en fonction de votre année et groupe.</li>
-            </ul>
-
-            <p><strong>Les inscrits peuvent :</strong></p>
-            <ul>
-                <li>Se connecter, réinitialiser son mot de passe et supprimer son compte.</li>
-                <li>Modifier ses informations de profil</li>
-                <li>S'inscrire à un événement : Seul ou en groupe</li>
-                <li>Consulter des articles d'actualité sur le BDE Inform'Aix</li>
-            </ul>
-
-            <p><strong>Les administrateurs peuvent :</strong></p>
-            <ul>
-                <li>Gérer les membres : Donner des droit administrateur, bloquer des membre, ou rétrograder dès administrateur</li>
-                <li>Créer, modifier ou supprimer des événements</li>
-                <li>Créer, modifier ou supprimer des articles d'actualités</li>
-            </ul>
-
-            <p class="author-info">Rédigé par : Nasser, Mohamed Amine et Amin</p>
         </div>
+                   
+        <p class="author-info">Rédigé Par Nahi Amine et Palot Thomas</p>
+
     </section>
 
     <!-- Footer -->

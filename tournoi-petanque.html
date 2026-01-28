@@ -1,0 +1,676 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tournoi de Pétanque | Journal IUT Info</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bitter:wght@400;600;700&family=Source+Sans+3:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #1a2332;
+            --secondary-color: #667eea;
+            --accent-color: #f5576c;
+            --text-dark: #1a1a2e;
+            --text-light: #6b7280;
+            --bg-light: #f9fafb;
+            --bg-white: #ffffff;
+            --border-color: #e5e7eb;
+            --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            --shadow-lg: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body { 
+            font-family: 'Source Sans 3', sans-serif; 
+            color: #333; 
+            line-height: 1.7; 
+            background: #f5f5f5; 
+        }
+
+        /* Header identique à l'index */
+        .main-header {
+            background: var(--bg-white);
+            box-shadow: var(--shadow);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 3px solid var(--secondary-color);
+        }
+        
+        .header-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            min-height: 80px;
+        }
+        .author-info {
+            font-style: italic;
+            color: #666;
+            margin-bottom: 25px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid #e0e0e0;
+        }
+
+        .journal-logo {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .logo-text {
+            font-family: 'Bitter', serif;
+            font-size: 32px;
+            font-weight: 700;
+            color: var(--primary-color);
+            letter-spacing: -1px;
+        }
+
+        .logo-subtitle {
+            font-size: 11px;
+            font-weight: 600;
+            color: var(--secondary-color);
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-top: -4px;
+        }
+
+        .main-nav {
+            display: flex;
+        }
+
+        .nav-list {
+            list-style: none;
+            display: flex;
+            gap: 32px;
+            align-items: center;
+            margin: 0;
+            padding: 0;
+        }
+
+        .nav-item {
+            position: relative;
+        }
+
+        .nav-item a {
+            text-decoration: none;
+            color: var(--text-dark);
+            font-weight: 600;
+            font-size: 15px;
+            padding: 8px 0;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            transition: color 0.3s ease;
+        }
+
+        .nav-item a:hover {
+            color: var(--secondary-color);
+        }
+
+        .nav-item.active a {
+            color: var(--secondary-color);
+            border-bottom: 2px solid var(--secondary-color);
+        }
+
+        .arrow {
+            font-size: 12px;
+            transition: transform 0.3s ease;
+        }
+
+        .nav-item:hover .arrow {
+            transform: rotate(180deg);
+        }
+
+        .dropdown-menu {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background: var(--bg-white);
+            list-style: none;
+            min-width: 220px;
+            box-shadow: var(--shadow-lg);
+            border-radius: 8px;
+            padding: 12px 0;
+            margin-top: 8px;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-10px);
+            transition: all 0.3s ease;
+            border-top: 3px solid var(--secondary-color);
+        }
+
+        .nav-item:hover .dropdown-menu {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .dropdown-menu li {
+            padding: 0;
+        }
+
+        .dropdown-menu a {
+            display: block;
+            padding: 12px 20px;
+            color: var(--text-dark);
+            font-weight: 500;
+            transition: all 0.2s ease;
+        }
+
+        .dropdown-menu a:hover {
+            background: var(--bg-light);
+            color: var(--secondary-color);
+            padding-left: 24px;
+        }
+
+        .hero-section { 
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: #fff; 
+            text-align: center; 
+            padding: 60px 20px; 
+        }
+        .hero-title { 
+            font-size: 2.8rem; 
+            font-weight: 700; 
+            margin-bottom: 10px; 
+        }
+        .hero-subtitle { 
+            font-size: 1.3rem; 
+            margin-bottom: 10px; 
+        }
+        .hero-meta { 
+            font-size: 0.9rem; 
+            opacity: 0.9; 
+        }
+
+        .article-section { 
+            max-width: 900px; 
+            margin: 40px auto; 
+            background: #fff; 
+            padding: 40px 30px; 
+            border-radius: 10px; 
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05); 
+        }
+
+        .event-announcement {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 30px;
+            border-radius: 15px;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.3);
+        }
+
+        .event-announcement h2 {
+            font-size: 2rem;
+            margin-bottom: 20px;
+            text-align: center;
+            border-bottom: 3px solid rgba(255,255,255,0.3);
+            padding-bottom: 15px;
+        }
+
+        .event-date {
+            font-size: 1.5rem;
+            font-weight: 700;
+            text-align: center;
+            margin: 20px 0;
+            background: rgba(255,255,255,0.2);
+            padding: 15px;
+            border-radius: 10px;
+        }
+
+        .event-description {
+            margin: 20px 0;
+            line-height: 1.8;
+        }
+
+        .prizes-section {
+            background: rgba(255,255,255,0.1);
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+        }
+
+        .prizes-section h3 {
+            margin-bottom: 15px;
+            font-size: 1.4rem;
+        }
+
+        .prizes-section ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .prizes-section li {
+            padding: 10px;
+            margin: 8px 0;
+            background: rgba(255,255,255,0.15);
+            border-radius: 8px;
+            font-weight: 600;
+        }
+
+        .schedule-section {
+            background: #f8f9fa;
+            padding: 25px;
+            border-radius: 10px;
+            margin: 25px 0;
+        }
+
+        .schedule-section h3 {
+            color: #667eea;
+            font-size: 1.6rem;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .schedule-item {
+            padding: 12px;
+            margin: 10px 0;
+            background: white;
+            border-left: 4px solid #667eea;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+        }
+
+        .schedule-time {
+            font-weight: 700;
+            color: #667eea;
+            margin-right: 10px;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: #43e97b;
+            color: white;
+            padding: 15px 40px;
+            font-size: 1.2rem;
+            font-weight: 700;
+            text-decoration: none;
+            border-radius: 50px;
+            margin: 20px 0;
+            text-align: center;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(67, 233, 123, 0.4);
+        }
+
+        .cta-button:hover {
+            background: #38d86a;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(67, 233, 123, 0.5);
+        }
+
+        .button-container {
+            text-align: center;
+            margin: 30px 0;
+        }
+
+        .reminder-box {
+            background: #fff3cd;
+            border: 2px solid #ffc107;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+        }
+
+        .reminder-box strong {
+            color: #856404;
+            font-size: 1.1rem;
+        }
+
+        .contact-info {
+            background: #e7f3ff;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+            text-align: center;
+        }
+
+        .contact-info p {
+            margin: 10px 0;
+            font-size: 1rem;
+        }
+
+        .contact-info a {
+            color: #667eea;
+            font-weight: 600;
+            text-decoration: none;
+        }
+
+        .contact-info a:hover {
+            text-decoration: underline;
+        }
+
+        .reminder-section {
+            background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);
+            color: white;
+            padding: 30px;
+            border-radius: 15px;
+            margin: 30px 0;
+            box-shadow: 0 10px 30px rgba(250, 112, 154, 0.3);
+        }
+
+        .reminder-section h2 {
+            font-size: 2rem;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .photos-section {
+            margin: 40px 0;
+        }
+
+        .photos-section h3 {
+            color: #667eea;
+            font-size: 1.8rem;
+            margin-bottom: 25px;
+            text-align: center;
+        }
+
+        .photos-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .photo-item {
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .photo-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.15);
+        }
+
+        .photo-item img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        footer.main-footer { 
+            background: #333; 
+            color: #fff; 
+            padding: 40px 20px; 
+        }
+        footer h4 { 
+            margin-bottom: 10px; 
+            color: #fff; 
+        }
+        footer a { 
+            color: #fff; 
+            text-decoration: underline; 
+        }
+        footer ul {
+            list-style: none;
+            padding: 0;
+        }
+        .footer-bottom { 
+            text-align: center; 
+            margin-top: 20px; 
+            font-size: 0.9rem; 
+            opacity: 0.8; 
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                gap: 20px;
+                padding: 20px;
+            }
+            
+            .nav-list {
+                flex-wrap: wrap;
+                gap: 16px;
+                justify-content: center;
+            }
+
+            .hero-title {
+                font-size: 2rem;
+            }
+
+            .photos-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="main-header">
+        <div class="header-content">
+            <div class="logo-section">
+                <div class="journal-logo">
+                    <span class="logo-text">IUT</span>
+                    <span class="logo-subtitle">JOURNAL INTERNE</span>
+                </div>
+            </div>
+            <nav class="main-nav">
+                <ul class="nav-list">
+                    <li class="nav-item"><a href="index.html">Accueil</a></li>
+
+                    <li class="nav-item has-dropdown">
+                        <a href="#" class="dropdown-trigger">Info <span class="arrow">▾</span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="info-formations.html">Formations & SAE</a></li>
+                            <li><a href="info-erasmus.html">Erasmus</a></li>
+                            <li><a href="info-musee.html">Musée de l'Informatique</a></li>
+                        </ul>
+                    </li>
+
+                    <li class="nav-item has-dropdown">
+                        <a href="#" class="dropdown-trigger">Event <span class="arrow">▾</span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="vie-etudiante.html">Vie Étudiante</a></li>
+                            <li><a href="event-tournois.html">Tournois</a></li>
+                            <li><a href="event-sport.html">Sport & Loisirs</a></li>
+                        </ul>
+                    </li>
+
+                    <li class="nav-item has-dropdown">
+                        <a href="#" class="dropdown-trigger">Article <span class="arrow">▾</span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="pourquoi-but-info.html">Débouchés & Métiers</a></li>
+                            <li><a href="alumni.html">Témoignages Alumni</a></li>
+                            <li><a href="article-secteur.html">Secteur Informatique</a></li>
+                        </ul>
+                    </li>
+
+                    <li class="nav-item"><a href="contact.html">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero-section">
+        <h1 class="hero-title">Tournoi de Pétanque</h1>
+        <p class="hero-subtitle">Rejoignez-nous pour un moment convivial autour d'une partie de boules</p>
+        <div class="hero-meta">Rubrique : La vie étudiante de l'IUT • Événement annuel</div>
+    </section>
+
+    <!-- Article Content -->
+    <section class="article-section">
+        <div class="container">
+            <!-- Annonce principale -->
+            <div class="event-announcement">
+                <h2>ÉVÉNEMENT PÉTANQUE</h2>
+                
+                <div class="event-date">
+                    📅 Le 27/03 de 13h30 à 18h00
+                </div>
+
+                <div class="event-description">
+                    <p>Rejoignez-nous lors de notre tournoi annuel de pétanque qui aura lieu le 27/03 de 13h30 à 18h00.</p>
+                    
+                    <p>Le but de ce tournoi est de proposer un moment en toute convivialité afin de se retrouver autour d'une partie de boule.</p>
+                    
+                    <p><strong>Choisissez votre partenaire et embarquez dans ce tournoi ensemble !</strong></p>
+                    
+                    <p>Pas besoin d'être fort pour y participer. Si jamais vous perdez un match, vous pourriez rejoindre le loser bracket pour avoir une chance de retourner dans le tournoi!</p>
+                </div>
+
+                <div class="prizes-section">
+                    <h3>🏆 Prix à gagner :</h3>
+                    <ul>
+                        <li>🥇 1er : Une GameBoy Color</li>
+                        <li>🥈 2ème : Bon de 20€ chez "LE SAMOS"</li>
+                        <li>🥉 3ème : Une sortie au KFC avec Martin Nevot (payée)</li>
+                    </ul>
+                </div>
+
+                <p style="margin-top: 20px;">Pour les spectateurs comme pour tous les participants, une buvette sera présente afin de vous désaltérer avec vos sodas préférés ou de grignoter grâce aux nombreux snacks disponibles. <strong>Tous les fonds récoltés seront versés au BDE.</strong></p>
+
+                <p style="margin-top: 15px;">📍 Rejoignez-nous dans la cour devant le département informatique pour passer un merveilleux moment entre collègues.</p>
+            </div>
+
+            <!-- Planning -->
+            <div class="schedule-section">
+                <h3>— Planning —</h3>
+                <div class="schedule-item">
+                    <span class="schedule-time">13h30</span>
+                    <span>Début de l'événement</span>
+                </div>
+                <div class="schedule-item">
+                    <span class="schedule-time">13h45-14h00</span>
+                    <span>Explication des règles</span>
+                </div>
+                <div class="schedule-item">
+                    <span class="schedule-time">14h05</span>
+                    <span>Affichage des matchs</span>
+                </div>
+                <div class="schedule-item">
+                    <span class="schedule-time">14h10</span>
+                    <span>Début des matchs</span>
+                </div>
+                <div class="schedule-item">
+                    <span class="schedule-time">…</span>
+                    <span>Déroulement des matchs suivants annoncé au fur et à mesure (dépend du temps des matchs)</span>
+                </div>
+                <div class="schedule-item">
+                    <span class="schedule-time">~17h00</span>
+                    <span>Fin du Tournoi</span>
+                </div>
+                <div class="schedule-item">
+                    <span class="schedule-time">17h05</span>
+                    <span>Remise des prix</span>
+                </div>
+                <div class="schedule-item">
+                    <span class="schedule-time">17h10-18h00</span>
+                    <span>Goûter de participation</span>
+                </div>
+            </div>
+
+            <!-- Bouton d'inscription -->
+            <div class="button-container">
+                <a href="#" class="cta-button">✍️ Cliquez ici pour vous inscrire</a>
+            </div>
+
+            <!-- Avertissement présence -->
+            <div class="reminder-box">
+                <p><strong>⚠️ La présence est obligatoire pour tous les inscrits sauf absence avec justificatif</strong></p>
+            </div>
+
+            <!-- Contact -->
+            <div class="contact-info">
+                <p><strong>En cas de question ou problèmes, veuillez contacter :</strong></p>
+                <p><a href="mailto:aline.dumont@etu.univ-amu.fr">aline.dumont@etu.univ-amu.fr</a></p>
+            </div>
+
+            <hr style="margin: 40px 0; border: none; border-top: 2px solid #e0e0e0;">
+
+            <!-- Section rappel -->
+            <div class="reminder-section">
+                <h2>📢 RAPPEL : ÉVÉNEMENT PÉTANQUE</h2>
+                
+                <p style="font-size: 1.1rem; margin: 20px 0;">Bonjour,</p>
+                
+                <p>Nous vous rappelons que le tournoi de pétanque aura lieu le <strong>27/03, de 13h30 à 18h00</strong>.</p>
+                
+                <p>Nous comptons sur votre présence pour encourager les équipes participantes.</p>
+
+                <div class="button-container">
+                    <a href="#" class="cta-button" style="background: white; color: #fa709a;">✍️ Cliquez ici pour vous inscrire</a>
+                </div>
+
+                <p style="margin-top: 20px;"><strong>⚠️ La présence est obligatoire pour tous les inscrits sauf absence avec justificatif.</strong></p>
+
+                <div style="margin-top: 25px; padding: 15px; background: rgba(255,255,255,0.2); border-radius: 10px;">
+                    <p><strong>En cas de question ou de problème, veuillez contacter :</strong></p>
+                    <p><a href="mailto:aline.dumont@etu.univ-amu.fr" style="color: white; text-decoration: underline;">aline.dumont@etu.univ-amu.fr</a></p>
+                </div>
+            </div>
+
+            <!-- Photos de l'événement -->
+            <div class="photos-section">
+                <h3>Affiche de concour de pétanque</h3>
+                <div class="photos-grid">
+                    <div class="photo-item">
+                        <img src="Petanque1.png" alt="Photo du tournoi de pétanque 1">
+                    </div>
+                    <div class="photo-item">
+                        <img src="Petanque2.png" alt="Photo du tournoi de pétanque 2">
+                    </div>
+                </div>
+            </div>
+                        
+            <p class="author-info">Rédigé par : Par Pablo, Aline et Valentin</p>
+
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="main-footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>Contact</h4>
+                    <p>
+                        IUT Aix-Marseille – Site d'Aix-en-Provence<br>
+                        Département Informatique<br>
+                        413 avenue Gaston Berger<br>
+                        13625 Aix-en-Provence cedex 01<br>
+                        Téléphone 04 13 94 63 00<br>
+                        Email : iut-aix-informatique@univ-amu.fr
+                    </p>
+                </div>
+                <div class="footer-section">
+                    <h4>Rubriques</h4>
+                    <ul>
+                        <li><a href="vie-etudiante.html">La vie étudiante de l'IUT</a></li>
+                        <li><a href="etudier-iut.html">Étudier à l'IUT</a></li>
+                        <li><a href="pourquoi-but-info.html">Pourquoi BUT Info</a></li>
+                        <li><a href="alumni.html">Alumnis</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                &copy; 2026 Journal IUT Info - Tous droits réservés
+            </div>
+        </div>
+    </footer>
+
+    <!-- Dropdown JS -->
+    <script>
+        document.querySelectorAll('.dropdown-trigger').forEach(trigger => {
+            trigger.addEventListener('click', e => {
+                e.preventDefault();
+            });
+        });
+    </script>
+</body>
+</html>

@@ -3,33 +3,425 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Le Campus Sportif d’Aix-Marseille Université | Journal IUT Info</title>
+    <title>Le Campus Sportif d'Aix-Marseille Université | Journal IUT Info</title>
     <link rel="stylesheet" href="styles.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Bitter:wght@400;600;700&family=Source+Sans+3:wght@300;400;600;700&display=swap" rel="stylesheet">
     <style>
-        body { font-family: 'Source Sans 3', sans-serif; color: #333; line-height: 1.7; background: #f5f5f5; }
-        .main-header { background: #667eea; color: #fff; padding: 20px; }
-        .main-header .journal-logo { font-weight: 700; font-size: 1.5rem; }
-        .main-nav ul { list-style: none; display: flex; gap: 20px; padding: 0; margin: 10px 0 0; }
-        .main-nav a { color: #fff; text-decoration: none; font-weight: 600; }
-        .hero-section { background: #764ba2; color: #fff; text-align: center; padding: 60px 20px; }
-        .hero-title { font-size: 2.8rem; font-weight: 700; margin-bottom: 10px; }
-        .hero-subtitle { font-size: 1.3rem; margin-bottom: 10px; }
-        .hero-meta { font-size: 0.9rem; opacity: 0.9; }
+        :root {
+            --primary-color: #1a2332;
+            --secondary-color: #667eea;
+            --accent-color: #f5576c;
+            --text-dark: #1a1a2e;
+            --text-light: #6b7280;
+            --bg-light: #f9fafb;
+            --bg-white: #ffffff;
+            --border-color: #e5e7eb;
+            --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            --shadow-lg: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
 
-        .article-section { max-width: 900px; margin: 40px auto; background: #fff; padding: 40px 30px; border-radius: 10px; box-shadow: 0 5px 15px rgba(0,0,0,0.05); }
-        .article-section h2 { font-size: 2rem; color: #764ba2; margin-bottom: 20px; }
-        .article-section h3 { font-size: 1.6rem; color: #667eea; margin-top: 30px; margin-bottom: 15px; }
-        .article-section h4 { font-size: 1.3rem; color: #43e97b; margin-top: 20px; margin-bottom: 10px; }
-        .article-section p, .article-section ul { margin-bottom: 15px; }
-        .article-section ul { list-style: disc; margin-left: 20px; }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-        footer.main-footer { background: #333; color: #fff; padding: 40px 20px; }
-        footer h4 { margin-bottom: 10px; color: #fff; }
-        footer a { color: #fff; text-decoration: underline; }
-        .footer-bottom { text-align: center; margin-top: 20px; font-size: 0.9rem; opacity: 0.8; }
+        body { 
+            font-family: 'Source Sans 3', sans-serif; 
+            color: #333; 
+            line-height: 1.7; 
+            background: #f5f5f5; 
+        }
+
+        /* Header identique à l'index */
+        .main-header {
+            background: var(--bg-white);
+            box-shadow: var(--shadow);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 3px solid var(--secondary-color);
+        }
+        
+        .header-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            min-height: 80px;
+        }
+
+        .journal-logo {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .logo-text {
+            font-family: 'Bitter', serif;
+            font-size: 32px;
+            font-weight: 700;
+            color: var(--primary-color);
+            letter-spacing: -1px;
+        }
+
+        .logo-subtitle {
+            font-size: 11px;
+            font-weight: 600;
+            color: var(--secondary-color);
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-top: -4px;
+        }
+
+        .main-nav {
+            display: flex;
+        }
+
+        .nav-list {
+            list-style: none;
+            display: flex;
+            gap: 32px;
+            align-items: center;
+            margin: 0;
+            padding: 0;
+        }
+
+        .nav-item {
+            position: relative;
+        }
+
+        .nav-item a {
+            text-decoration: none;
+            color: var(--text-dark);
+            font-weight: 600;
+            font-size: 15px;
+            padding: 8px 0;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            transition: color 0.3s ease;
+        }
+
+        .nav-item a:hover {
+            color: var(--secondary-color);
+        }
+
+        .nav-item.active a {
+            color: var(--secondary-color);
+            border-bottom: 2px solid var(--secondary-color);
+        }
+
+        .arrow {
+            font-size: 12px;
+            transition: transform 0.3s ease;
+        }
+
+        .nav-item:hover .arrow {
+            transform: rotate(180deg);
+        }
+
+        .dropdown-menu {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background: var(--bg-white);
+            list-style: none;
+            min-width: 220px;
+            box-shadow: var(--shadow-lg);
+            border-radius: 8px;
+            padding: 12px 0;
+            margin-top: 8px;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-10px);
+            transition: all 0.3s ease;
+            border-top: 3px solid var(--secondary-color);
+        }
+
+        .nav-item:hover .dropdown-menu {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .dropdown-menu li {
+            padding: 0;
+        }
+
+        .dropdown-menu a {
+            display: block;
+            padding: 12px 20px;
+            color: var(--text-dark);
+            font-weight: 500;
+            transition: all 0.2s ease;
+        }
+
+        .dropdown-menu a:hover {
+            background: var(--bg-light);
+            color: var(--secondary-color);
+            padding-left: 24px;
+        }
+
+        /* Hero Section avec dégradé sport */
+        .hero-section { 
+            background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);
+            color: #fff; 
+            text-align: center; 
+            padding: 80px 20px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero-section::before {
+            content: '⚽🏀🎾';
+            position: absolute;
+            top: 20%;
+            left: 10%;
+            font-size: 4rem;
+            opacity: 0.15;
+        }
+        
+        .hero-section::after {
+            content: '🏃‍♂️🏊‍♀️🧘‍♀️';
+            position: absolute;
+            bottom: 20%;
+            right: 10%;
+            font-size: 4rem;
+            opacity: 0.15;
+        }
+        
+        .hero-title { 
+            font-size: 3rem; 
+            font-weight: 700; 
+            margin-bottom: 15px;
+            position: relative;
+            z-index: 1;
+        }
+        .hero-subtitle { 
+            font-size: 1.4rem; 
+            margin-bottom: 15px;
+            position: relative;
+            z-index: 1;
+        }
+        .hero-meta { 
+            font-size: 1rem; 
+            opacity: 0.95;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Article Section */
+        .article-section { 
+            max-width: 900px; 
+            margin: 40px auto; 
+            background: #fff; 
+            padding: 50px 40px; 
+            border-radius: 15px; 
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08); 
+        }
+        
+        .article-section > p:first-of-type {
+            font-size: 1.15rem;
+            line-height: 1.9;
+            padding: 25px;
+            background: linear-gradient(to right, #f0f7ff, #ffffff);
+            border-left: 5px solid #667eea;
+            border-radius: 10px;
+            margin-bottom: 35px;
+        }
+        
+        .article-section h3 { 
+            font-size: 1.9rem; 
+            color: #fa709a; 
+            margin-top: 40px; 
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 3px solid #fa709a;
+            position: relative;
+        }
+        
+        .article-section h3::after {
+            content: '';
+            position: absolute;
+            bottom: -3px;
+            left: 0;
+            width: 80px;
+            height: 3px;
+            background: #fee140;
+        }
+        
+        .article-section h4 { 
+            font-size: 1.5rem; 
+            color: #667eea; 
+            margin-top: 28px; 
+            margin-bottom: 12px;
+            font-weight: 700;
+            padding-left: 15px;
+            border-left: 4px solid #667eea;
+        }
+        
+        .article-section p { 
+            margin-bottom: 18px;
+            font-size: 1.05rem;
+            line-height: 1.8;
+            color: #444;
+        }
+
+        /* Catégories d'activités avec icônes */
+        .activity-card {
+            background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
+            padding: 20px;
+            border-radius: 12px;
+            margin: 20px 0;
+            border-left: 5px solid #667eea;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .activity-card:hover {
+            transform: translateX(5px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+        }
+        
+        .activity-card h4 {
+            margin-top: 0;
+            border-left: none;
+            padding-left: 0;
+        }
+
+        /* Section info pratiques */
+        .info-box {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 30px;
+            border-radius: 15px;
+            margin: 35px 0;
+            box-shadow: 0 10px 25px rgba(102, 126, 234, 0.3);
+        }
+        
+        .info-box h3 {
+            color: white;
+            margin-top: 0;
+            border: none;
+            padding-bottom: 0;
+        }
+        
+        .info-box h3::after {
+            display: none;
+        }
+        
+        .info-box p {
+            margin-bottom: 12px;
+        }
+
+        /* Section témoignage */
+        .testimonial-section {
+            background: #fffbeb;
+            padding: 25px;
+            border-radius: 12px;
+            border-left: 5px solid #fee140;
+            margin: 30px 0;
+            font-style: italic;
+        }
+        
+        .testimonial-section h3 {
+            color: #f59e0b;
+            border-bottom: 3px solid #fee140;
+        }
+        
+        .testimonial-section h3::after {
+            background: #f59e0b;
+        }
+
+        /* Conclusion en vedette */
+        .conclusion-section {
+            background: linear-gradient(135deg, #43e97b 0%, #38d86a 100%);
+            color: white;
+            padding: 30px;
+            border-radius: 15px;
+            margin: 35px 0;
+            box-shadow: 0 10px 25px rgba(67, 233, 123, 0.3);
+        }
+        
+        .conclusion-section h3 {
+            color: white;
+            margin-top: 0;
+            border: none;
+            padding-bottom: 0;
+        }
+        
+        .conclusion-section h3::after {
+            display: none;
+        }
+        
+        .conclusion-section p {
+            font-size: 1.1rem;
+            line-height: 1.9;
+        }
+
+        .author-info {
+            font-style: italic;
+            color: #666;
+            margin-bottom: 25px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid #e0e0e0;
+        }
+
+        footer.main-footer { 
+            background: #333; 
+            color: #fff; 
+            padding: 40px 20px; 
+        }
+        footer h4 { 
+            margin-bottom: 10px; 
+            color: #fff; 
+        }
+        footer a { 
+            color: #fff; 
+            text-decoration: underline; 
+        }
+        footer ul {
+            list-style: none;
+            padding: 0;
+        }
+        .footer-bottom { 
+            text-align: center; 
+            margin-top: 20px; 
+            font-size: 0.9rem; 
+            opacity: 0.8; 
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                gap: 20px;
+                padding: 20px;
+            }
+            
+            .nav-list {
+                flex-wrap: wrap;
+                gap: 16px;
+                justify-content: center;
+            }
+
+            .hero-title {
+                font-size: 2.2rem;
+            }
+
+            .article-section {
+                padding: 30px 20px;
+            }
+
+            .hero-section::before,
+            .hero-section::after {
+                font-size: 2rem;
+            }
+        }
     </style>
 </head>
 <body>
@@ -43,12 +435,36 @@
                 </div>
             </div>
             <nav class="main-nav">
-                <ul>
+                <ul class="nav-list">
                     <li class="nav-item"><a href="index.html">Accueil</a></li>
-                    <li class="nav-item"><a href="vie-etudiante.html">Vie Étudiante</a></li>
-                    <li class="nav-item"><a href="etudier-iut.html">Étudier à l’IUT</a></li>
-                    <li class="nav-item"><a href="pourquoi-but-info.html">Pourquoi BUT Info</a></li>
-                    <li class="nav-item"><a href="alumni.html">Aluminis</a></li>
+
+                    <li class="nav-item has-dropdown">
+                        <a href="#" class="dropdown-trigger">Info <span class="arrow">▾</span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="info-formations.html">Formations & SAE</a></li>
+                            <li><a href="info-erasmus.html">Erasmus</a></li>
+                            <li><a href="info-musee.html">Musée de l'Informatique</a></li>
+                        </ul>
+                    </li>
+
+                    <li class="nav-item has-dropdown">
+                        <a href="#" class="dropdown-trigger">Event <span class="arrow">▾</span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="vie-etudiante.html">Vie Étudiante</a></li>
+                            <li><a href="event-tournois.html">Tournois</a></li>
+                            <li><a href="event-sport.html">Sport & Loisirs</a></li>
+                        </ul>
+                    </li>
+
+                    <li class="nav-item has-dropdown">
+                        <a href="#" class="dropdown-trigger">Article <span class="arrow">▾</span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="pourquoi-but-info.html">Débouchés & Métiers</a></li>
+                            <li><a href="alumni.html">Témoignages Alumni</a></li>
+                            <li><a href="article-secteur.html">Secteur Informatique</a></li>
+                        </ul>
+                    </li>
+
                     <li class="nav-item"><a href="contact.html">Contact</a></li>
                 </ul>
             </nav>
@@ -57,63 +473,89 @@
 
     <!-- Hero Section -->
     <section class="hero-section">
-        <h1 class="hero-title">Le campus sportif d’Aix-Marseille Université</h1>
-        <p class="hero-subtitle">Découvrez toutes les activités sportives et services proposés par le SUAPS d’AMU</p>
-        <div class="hero-meta">Rubrique : La vie étudiante de l’IUT • Janvier 2026</div>
+        <h1 class="hero-title">Le campus sportif d'Aix-Marseille Université</h1>
+        <p class="hero-subtitle">Découvrez toutes les activités sportives et services proposés par le SUAPS d'AMU</p>
+        <div class="hero-meta">Rubrique : La vie étudiante de l'IUT • Janvier 2026</div>
     </section>
 
     <!-- Article Content -->
     <section class="article-section">
         <div class="container">
-            <p>Le sport occupe une place importante au sein d’Aix-Marseille Université (AMU). Grâce au Service Universitaire des Activités Physiques et Sportives (SUAPS), les étudiants comme le personnel peuvent pratiquer une grande variété d’activités sportives, adaptées à tous les niveaux, allant du bien-être à la compétition, en passant par des formations diplômantes.</p>
+            <p>Le sport occupe une place importante au sein d'Aix-Marseille Université (AMU). Grâce au Service Universitaire des Activités Physiques et Sportives (SUAPS), les étudiants comme le personnel peuvent pratiquer une grande variété d'activités sportives, adaptées à tous les niveaux, allant du bien-être à la compétition, en passant par des formations diplômantes.</p>
 
             <h3>Les activités sportives proposées par AMU</h3>
-            <p>Aix-Marseille Université propose un choix très large d’activités, regroupées en plusieurs grandes catégories.</p>
+            <p>Aix-Marseille Université propose un choix très large d'activités, regroupées en plusieurs grandes catégories.</p>
 
-            <h4>Activités de bien-être</h4>
-            <p>Destinées à améliorer la détente, la souplesse et l’équilibre du corps : gym douce, pilates, yoga, stretching, tai-chi, pratiques zen.</p>
+            <div class="activity-card">
+                <h4>Activités de bien-être</h4>
+                <p>Destinées à améliorer la détente, la souplesse et l'équilibre du corps : gym douce, pilates, yoga, stretching, tai-chi, pratiques zen.</p>
+            </div>
 
-            <h4>Activités de la forme</h4>
-            <p>Renforcement musculaire et condition physique : body sculpt, circuit training, crossfit, HIIT, step freestyle, cuisses-abdos-fessiers, musculation, espace cardio connecté du CSU d’Aix. Certaines activités spécifiques, comme la musculation Pack Sport +, sont accessibles sous conditions. Événements ponctuels comme la journée de gestion du stress les 6 et 8 janvier 2026.</p>
+            <div class="activity-card">
+                <h4>Activités de la forme</h4>
+                <p>Renforcement musculaire et condition physique : body sculpt, circuit training, crossfit, HIIT, step freestyle, cuisses-abdos-fessiers, musculation, espace cardio connecté du CSU d'Aix. Certaines activités spécifiques, comme la musculation Pack Sport +, sont accessibles sous conditions. Événements ponctuels comme la journée de gestion du stress les 6 et 8 janvier 2026.</p>
+            </div>
 
-            <h4>Activités physiques artistiques</h4>
-            <p>Sport et expression corporelle : danse contemporaine, modern’jazz, hip-hop chorégraphique, danse comédie musicale, danse à deux, lady style, waacking. Ateliers et animations lors du festival des arts et des sciences.</p>
+            <div class="activity-card">
+                <h4>Activités physiques artistiques</h4>
+                <p>Sport et expression corporelle : danse contemporaine, modern'jazz, hip-hop chorégraphique, danse comédie musicale, danse à deux, lady style, waacking. Ateliers et animations lors du festival des arts et des sciences.</p>
+            </div>
 
-            <h4>Formations diplômantes et sportifs de haut niveau</h4>
-            <p>BNSSA en partenariat avec la Croix Blanche ou pompiers, formations en arbitrage de football, dispositifs spécifiques pour concilier études et carrière sportive.</p>
+            <div class="activity-card">
+                <h4>Formations diplômantes et sportifs de haut niveau</h4>
+                <p>BNSSA en partenariat avec la Croix Blanche ou pompiers, formations en arbitrage de football, dispositifs spécifiques pour concilier études et carrière sportive.</p>
+            </div>
 
-            <h4>Sports aquatiques</h4>
-            <p>Aqua-gym, natation (classique, artistique, non-nageurs), plongée sous-marine, natation en pratique libre via Pack Sport +.</p>
+            <div class="activity-card">
+                <h4>Sports aquatiques</h4>
+                <p>Aqua-gym, natation (classique, artistique, non-nageurs), plongée sous-marine, natation en pratique libre via Pack Sport +.</p>
+            </div>
 
-            <h4>Sports collectifs</h4>
-            <p>Basket-ball, football, futsal, handball, rugby, touch rugby, ultimate frisbee, beach-volley, volley-ball.</p>
+            <div class="activity-card">
+                <h4>Sports collectifs</h4>
+                <p>Basket-ball, football, futsal, handball, rugby, touch rugby, ultimate frisbee, beach-volley, volley-ball.</p>
+            </div>
 
-            <h4>Sports de combat</h4>
-            <p>Aïkido, boxe anglaise et française, judo, karaté, taekwondo, MMA, self-défense, escrime (certificat médical obligatoire).</p>
+            <div class="activity-card">
+                <h4>Sports de combat</h4>
+                <p>Aïkido, boxe anglaise et française, judo, karaté, taekwondo, MMA, self-défense, escrime (certificat médical obligatoire).</p>
+            </div>
 
-            <h4>Sports de plein air</h4>
-            <p>Escalade, randonnée sur le campus, stages de parapente (21 au 25 avril 2026 à Orcières).</p>
+            <div class="activity-card">
+                <h4>Sports de plein air</h4>
+                <p>Escalade, randonnée sur le campus, stages de parapente (21 au 25 avril 2026 à Orcières).</p>
+            </div>
 
-            <h4>Sports individuels et raquettes</h4>
-            <p>Athlétisme, équitation, tir à l’arc, pétanque, laser run, tennis, badminton, padel, tennis de table.</p>
+            <div class="activity-card">
+                <h4>Sports individuels et raquettes</h4>
+                <p>Athlétisme, équitation, tir à l'arc, pétanque, laser run, tennis, badminton, padel, tennis de table.</p>
+            </div>
 
-            <h3>Inscriptions et périodes d’accès</h3>
-            <p>Inscriptions en ligne sur le site SUAPS. Premier semestre : à partir du 8 septembre. Second semestre : à partir du 9 janvier. Certaines activités sont limitées en places.</p>
+            <div class="info-box">
+                <h3>Inscriptions et périodes d'accès</h3>
+                <p>Inscriptions en ligne sur le site SUAPS. <strong>Premier semestre :</strong> à partir du 8 septembre. <strong>Second semestre :</strong> à partir du 9 janvier. Certaines activités sont limitées en places.</p>
+            </div>
 
             <h3>Les offres sportives : Bonus, Pack Sport et Pack Sport +</h3>
-            <p>Bonus sport : points supplémentaires sur la moyenne universitaire. Pack Sport : pratiquer une activité sans notation ni bonus. Pack Sport + : payer pour activité supplémentaire ou accès installations spécifiques. Deux sports possibles via bonus/Pack Sport et un sport supplémentaire via Pack Sport +.</p>
+            <p><strong>Bonus sport :</strong> points supplémentaires sur la moyenne universitaire. <strong>Pack Sport :</strong> pratiquer une activité sans notation ni bonus. <strong>Pack Sport + :</strong> payer pour activité supplémentaire ou accès installations spécifiques. Deux sports possibles via bonus/Pack Sport et un sport supplémentaire via Pack Sport +.</p>
 
             <h3>Accès libre et installations sportives</h3>
-            <p>Piscine : créneaux en accès libre. Espace cardio : gratuit pour étudiants, payant pour personnel. Salle musculation : Pack Sport obligatoire. Volley-ball : accès libre. Tennis : partenariat avec club.</p>
+            <p><strong>Piscine :</strong> créneaux en accès libre. <strong>Espace cardio :</strong> gratuit pour étudiants, payant pour personnel. <strong>Salle musculation :</strong> Pack Sport obligatoire. <strong>Volley-ball :</strong> accès libre. <strong>Tennis :</strong> partenariat avec club.</p>
 
             <h3>Sport pour le personnel et les enseignants</h3>
             <p>Pour 45 € par an, deux activités possibles, créneaux réservés ou partagés avec étudiants.</p>
 
-            <h3>Témoignage étudiant</h3>
-            <p>Une étudiante pratiquant la danse, notamment le lady style sans talons, apprécie les horaires et l’encadrement, malgré la difficulté de concilier deux activités sportives avec les cours.</p>
+            <div class="testimonial-section">
+                <h3>Témoignage étudiant</h3>
+                <p>Une étudiante pratiquant la danse, notamment le lady style sans talons, apprécie les horaires et l'encadrement, malgré la difficulté de concilier deux activités sportives avec les cours.</p>
+            </div>
 
-            <h3>Conclusion</h3>
-            <p>Le campus sportif d’Aix-Marseille Université offre une offre sportive riche, variée et accessible à tous. Le sport à AMU représente un véritable atout dans la vie universitaire, permettant un équilibre entre études, santé et vie sociale, avec des infrastructures et un encadrement de qualité.</p>
+            <div class="conclusion-section">
+                <h3>Conclusion</h3>
+                <p>Le campus sportif d'Aix-Marseille Université offre une offre sportive riche, variée et accessible à tous. Le sport à AMU représente un véritable atout dans la vie universitaire, permettant un équilibre entre études, santé et vie sociale, avec des infrastructures et un encadrement de qualité.</p>
+            </div>
+
+            <p class="author-info">Rédigé par : Sinda, Mariam et Ambre</p>
         </div>
     </section>
 
@@ -124,7 +566,7 @@
                 <div class="footer-section">
                     <h4>Contact</h4>
                     <p>
-                        IUT Aix-Marseille – Site d’Aix-en-Provence<br>
+                        IUT Aix-Marseille – Site d'Aix-en-Provence<br>
                         Département Informatique<br>
                         413 avenue Gaston Berger<br>
                         13625 Aix-en-Provence cedex 01<br>
@@ -135,10 +577,10 @@
                 <div class="footer-section">
                     <h4>Rubriques</h4>
                     <ul>
-                        <li><a href="vie-etudiante.html">La vie étudiante de l’IUT</a></li>
-                        <li><a href="etudier-iut.html">Étudier à l’IUT</a></li>
+                        <li><a href="vie-etudiante.html">La vie étudiante de l'IUT</a></li>
+                        <li><a href="etudier-iut.html">Étudier à l'IUT</a></li>
                         <li><a href="pourquoi-but-info.html">Pourquoi BUT Info</a></li>
-                        <li><a href="alumni.html">Aluminis</a></li>
+                        <li><a href="alumni.html">Alumnis</a></li>
                     </ul>
                 </div>
             </div>
@@ -147,5 +589,14 @@
             </div>
         </div>
     </footer>
+
+    <!-- Dropdown JS -->
+    <script>
+        document.querySelectorAll('.dropdown-trigger').forEach(trigger => {
+            trigger.addEventListener('click', e => {
+                e.preventDefault();
+            });
+        });
+    </script>
 </body>
 </html>

@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pourquoi choisir BUT Informatique | Journal IUT Info</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bitter:wght@400;600;700&family=Source+Sans+3:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #1a2332;
+            --secondary-color: #667eea;
+            --accent-color: #f5576c;
+            --text-dark: #1a1a2e;
+            --text-light: #6b7280;
+            --bg-light: #f9fafb;
+            --bg-white: #ffffff;
+            --border-color: #e5e7eb;
+            --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            --shadow-lg: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+
+        body { font-family: 'Source Sans 3', sans-serif; color: #333; line-height: 1.7; margin:0; background:#f5f5f5; }
+
+        /* Header identique à l'index */
+        .main-header {
+            background: var(--bg-white);
+            box-shadow: var(--shadow);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 3px solid var(--secondary-color);
+        }
+        
+        .header-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            min-height: 80px;
+        }
+
+        .journal-logo {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .logo-text {
+            font-family: 'Bitter', serif;
+            font-size: 32px;
+            font-weight: 700;
+            color: var(--primary-color);
+            letter-spacing: -1px;
+        }
+
+        .logo-subtitle {
+            font-size: 11px;
+            font-weight: 600;
+            color: var(--secondary-color);
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-top: -4px;
+        }
+
+        .main-nav {
+            display: flex;
+        }
+
+        .nav-list {
+            list-style: none;
+            display: flex;
+            gap: 32px;
+            align-items: center;
+            margin: 0;
+            padding: 0;
+        }
+
+        .nav-item {
+            position: relative;
+        }
+
+        .nav-item a {
+            text-decoration: none;
+            color: var(--text-dark);
+            font-weight: 600;
+            font-size: 15px;
+            padding: 8px 0;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            transition: color 0.3s ease;
+        }
+
+        .nav-item a:hover {
+            color: var(--secondary-color);
+        }
+
+        .nav-item.active a {
+            color: var(--secondary-color);
+            border-bottom: 2px solid var(--secondary-color);
+        }
+
+        .arrow {
+            font-size: 12px;
+            transition: transform 0.3s ease;
+        }
+
+        .nav-item:hover .arrow {
+            transform: rotate(180deg);
+        }
+
+        .dropdown-menu {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background: var(--bg-white);
+            list-style: none;
+            min-width: 220px;
+            box-shadow: var(--shadow-lg);
+            border-radius: 8px;
+            padding: 12px 0;
+            margin-top: 8px;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-10px);
+            transition: all 0.3s ease;
+            border-top: 3px solid var(--secondary-color);
+        }
+
+        .nav-item:hover .dropdown-menu {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .dropdown-menu li {
+            padding: 0;
+        }
+
+        .dropdown-menu a {
+            display: block;
+            padding: 12px 20px;
+            color: var(--text-dark);
+            font-weight: 500;
+            transition: all 0.2s ease;
+        }
+
+        .dropdown-menu a:hover {
+            background: var(--bg-light);
+            color: var(--secondary-color);
+            padding-left: 24px;
+        }
+
+        /* Hero Section */
+        .hero-section { 
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            text-align: center; 
+            padding: 60px 20px; 
+            color: #fff; 
+        }
+        .hero-title { font-size: 2.8rem; font-weight: 700; margin-bottom: 10px; }
+        .hero-subtitle { font-size: 1.3rem; margin-bottom: 10px; }
+        .hero-meta { font-size: 0.9rem; opacity: 0.9; }
+
+        /* Article Section */
+        .article-section { max-width: 900px; margin: 40px auto; padding: 0 20px; }
+        .article-section h2 { font-size: 2rem; color: #764ba2; margin-bottom: 30px; text-align: center; }
+
+        .project-card {
+            margin-bottom: 20px; 
+            padding: 20px; 
+            background: #fff; 
+            border-radius: 10px; 
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            transition: transform 0.2s, box-shadow 0.2s;
+            cursor: pointer;
+            text-decoration: none;
+            display: block;
+            color: inherit;
+        }
+        .project-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+        }
+        .project-card h3 {
+            font-size: 1.8rem; 
+            color: #764ba2; 
+            margin-bottom: 10px;
+        }
+        .project-card ul { list-style: disc; margin-left: 20px; color: #555; }
+
+        /* Footer */
+        footer.main-footer { background: #333; color: #fff; padding: 40px 20px; }
+        footer h4 { margin-bottom: 10px; color: #fff; }
+        footer a { color: #fff; text-decoration: underline; }
+        footer ul { list-style: none; padding: 0; }
+        .footer-bottom { text-align: center; margin-top: 20px; font-size: 0.9rem; opacity: 0.8; }
+
+        /* Responsive dropdown */
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                gap: 20px;
+                padding: 20px;
+            }
+            
+            .nav-list {
+                flex-wrap: wrap;
+                gap: 16px;
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header -->
+    <header class="main-header">
+        <div class="header-content">
+            <div class="logo-section">
+                <div class="journal-logo">
+                    <span class="logo-text">IUT</span>
+                    <span class="logo-subtitle">JOURNAL INTERNE</span>
+                </div>
+            </div>
+            <nav class="main-nav">
+                <ul class="nav-list">
+                    <li class="nav-item"><a href="index.html">Accueil</a></li>
+
+                    <li class="nav-item has-dropdown">
+                        <a href="#" class="dropdown-trigger">Info <span class="arrow">▾</span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="info-formations.html">Formations & SAE</a></li>
+                            <li><a href="info-erasmus.html">Erasmus</a></li>
+                            <li><a href="info-musee.html">Musée de l'Informatique</a></li>
+                        </ul>
+                    </li>
+
+                    <li class="nav-item has-dropdown">
+                        <a href="#" class="dropdown-trigger">Event <span class="arrow">▾</span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="vie-etudiante.html">Vie Étudiante</a></li>
+                            <li><a href="event-tournois.html">Tournois</a></li>
+                            <li><a href="event-sport.html">Sport & Loisirs</a></li>
+                        </ul>
+                    </li>
+
+                    <li class="nav-item has-dropdown">
+                        <a href="#" class="dropdown-trigger">Article <span class="arrow">▾</span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="pourquoi-but-info.html">Débouchés & Métiers</a></li>
+                            <li><a href="alumni.html">Témoignages Alumni</a></li>
+                            <li><a href="article-secteur.html">Secteur Informatique</a></li>
+                        </ul>
+                    </li>
+
+                    <li class="nav-item"><a href="contact.html">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero-section">
+        <h1 class="hero-title">Pourquoi choisir la filière BUT Informatique</h1>
+        <p class="hero-subtitle">Découvrez les métiers, débouchés et opportunités du secteur informatique</p>
+        <div class="hero-meta">Rubrique : Pourquoi choisir BUT Info • Janvier 2026</div>
+    </section>
+
+    <!-- Article Section -->
+    <section class="article-section">
+        <h2>Articles et Fiches Métiers</h2>
+
+        <a href="securite-info.html" class="project-card">
+            <h3>La sécurité informatique</h3>
+            <ul>
+                <li>Problèmes croissants de mots de passe</li>
+                <li>Solutions précaires : gestionnaires de mots de passe en ligne</li>
+                <li>Points faibles des solutions actuelles</li>
+                <li>Solutions fiables et sécurisées</li>
+                <li>Pourquoi certaines solutions sont plus fiables</li>
+            </ul>
+        </a>
+
+    </section>
+
+    <!-- Footer -->
+    <footer class="main-footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>Contact</h4>
+                    <p>
+                        IUT Aix-Marseille – Site d'Aix-en-Provence<br>
+                        Département Informatique<br>
+                        413 avenue Gaston Berger<br>
+                        13625 Aix-en-Provence cedex 01<br>
+                        Téléphone 04 13 94 63 00<br>
+                        Email : iut-aix-informatique@univ-amu.fr
+                    </p>
+                </div>
+                <div class="footer-section">
+                    <h4>Rubriques</h4>
+                    <ul>
+                        <li><a href="vie-etudiante.html">La vie étudiante de l'IUT</a></li>
+                        <li><a href="etudier-iut.html">Étudier à l'IUT</a></li>
+                        <li><a href="pourquoi-but-info.html">Pourquoi BUT Info</a></li>
+                        <li><a href="alumni.html">Alumnis</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                &copy; 2026 Journal IUT Info - Tous droits réservés
+            </div>
+        </div>
+    </footer>
+
+    <!-- Dropdown JS -->
+    <script>
+        document.querySelectorAll('.dropdown-trigger').forEach(trigger => {
+            trigger.addEventListener('click', e => {
+                e.preventDefault();
+                const menu = trigger.nextElementSibling;
+                menu.style.display = menu.style.display === 'block' ? 'none' : 'block';
+            });
+        });
+    </script>
+</body>
+</html>
