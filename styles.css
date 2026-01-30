@@ -683,3 +683,34 @@ h1, h2, h3, h4, h5, h6 {
 .back-link:hover {
     gap: 12px;
 }
+
+
+/* Lottie Animation */
+#lottie-animation {
+    position: absolute;
+    bottom: 30px;
+    right: 50px;
+    width: 220px;
+    height: 220px;
+    pointer-events: none;
+    z-index: 10;
+}
+
+/* Responsive adjustments */
+@media (max-width: 1050px) {
+    #lottie-animation {
+        width: 100px;
+        height: 100px;
+        bottom: 50px;
+        right: 20px;
+    }
+}
+
+@media (max-width: 480px) {
+    #lottie-animation {
+        bottom: 58px;
+        right: 30px;
+        width: 100px;
+        height: 100px;
+    }
+}

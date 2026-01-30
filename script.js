@@ -121,6 +121,16 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 });
 
+
+lottie.loadAnimation({
+    container: document.getElementById('lottie-animation'),
+    renderer: 'svg',
+    loop: true,
+    autoplay: true,
+    path: 'Hello.json'
+});
+
+
 // Add console message for developers
 console.log('%c🎓 Journal IUT Info', 'color: #667eea; font-size: 20px; font-weight: bold;');
 console.log('%cDéveloppé par les étudiants de seconde année du département informatique', 'color: #6b7280; font-size: 12px;');
