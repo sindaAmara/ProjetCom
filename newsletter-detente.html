@@ -1,0 +1,650 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Newsletter Détente | Journal IUT Info</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bitter:wght@400;600;700&family=Source+Sans+3:wght@300;400;600;700&family=Caveat:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #1a2332;
+            --secondary-color: #667eea;
+            --accent-color: #00b894;
+            --text-dark: #1a1a2e;
+            --text-light: #6b7280;
+            --bg-light: #f9fafb;
+            --bg-white: #ffffff;
+            --border-color: #e5e7eb;
+            --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            --shadow-lg: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body { 
+            font-family: 'Source Sans 3', sans-serif; 
+            color: #333; 
+            line-height: 1.7; 
+            background: #f5f5f5;
+        }
+
+        /* Header */
+        .main-header {
+            background: var(--bg-white);
+            box-shadow: var(--shadow);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 3px solid var(--secondary-color);
+        }
+        
+        .header-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            min-height: 80px;
+        }
+
+        .journal-logo {
+            display: flex;
+            flex-direction: column;
+        }
+        .author-info {
+            font-style: italic;
+            color: #666;
+            margin-bottom: 25px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid #e0e0e0;
+        }
+
+        .logo-text {
+            font-family: 'Bitter', serif;
+            font-size: 32px;
+            font-weight: 700;
+            color: var(--primary-color);
+            letter-spacing: -1px;
+        }
+
+        .logo-subtitle {
+            font-size: 11px;
+            font-weight: 600;
+            color: var(--secondary-color);
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-top: -4px;
+        }
+
+        .main-nav {
+            display: flex;
+        }
+
+        .nav-list {
+            list-style: none;
+            display: flex;
+            gap: 32px;
+            align-items: center;
+            margin: 0;
+            padding: 0;
+        }
+
+        .nav-item {
+            position: relative;
+        }
+
+        .nav-item a {
+            text-decoration: none;
+            color: var(--text-dark);
+            font-weight: 600;
+            font-size: 15px;
+            padding: 8px 0;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            transition: color 0.3s ease;
+        }
+
+        .nav-item a:hover {
+            color: var(--secondary-color);
+        }
+
+        .arrow {
+            font-size: 12px;
+            transition: transform 0.3s ease;
+        }
+
+        .nav-item:hover .arrow {
+            transform: rotate(180deg);
+        }
+
+        .dropdown-menu {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background: var(--bg-white);
+            list-style: none;
+            min-width: 220px;
+            box-shadow: var(--shadow-lg);
+            border-radius: 8px;
+            padding: 12px 0;
+            margin-top: 8px;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-10px);
+            transition: all 0.3s ease;
+            border-top: 3px solid var(--secondary-color);
+        }
+
+        .nav-item:hover .dropdown-menu {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .dropdown-menu li {
+            padding: 0;
+        }
+
+        .dropdown-menu a {
+            display: block;
+            padding: 12px 20px;
+            color: var(--text-dark);
+            font-weight: 500;
+            transition: all 0.2s ease;
+        }
+
+        .dropdown-menu a:hover {
+            background: var(--bg-light);
+            color: var(--secondary-color);
+            padding-left: 24px;
+        }
+
+        /* Hero Section */
+        .hero-section {
+            background: linear-gradient(135deg, #00b894 0%, #55efc4 100%);
+            padding: 80px 20px;
+            text-align: center;
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-section::before {
+            content: '☕ 🛋️ 🎮 📚 🎵';
+            position: absolute;
+            top: 20px;
+            left: 0;
+            right: 0;
+            font-size: 3rem;
+            opacity: 0.2;
+            letter-spacing: 80px;
+            animation: float 20s infinite ease-in-out;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+
+        .hero-title {
+            font-family: 'Caveat', cursive;
+            font-size: 4.5rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            text-shadow: 3px 3px 0px rgba(0,0,0,0.1);
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-subtitle {
+            font-family: 'Caveat', cursive;
+            font-size: 2rem;
+            margin-bottom: 15px;
+            font-weight: 500;
+        }
+
+        .hero-meta {
+            font-size: 0.95rem;
+            opacity: 0.9;
+        }
+
+        /* Main Content */
+        .content-container {
+            max-width: 1000px;
+            margin: -40px auto 60px;
+            padding: 0 20px;
+        }
+
+        /* Article Card */
+        .article-card {
+            background: white;
+            border-radius: 20px;
+            padding: 50px;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+        }
+
+        .article-card h2 {
+            font-family: 'Bitter', serif;
+            font-size: 2.2rem;
+            color: #00b894;
+            margin-bottom: 25px;
+            padding-bottom: 15px;
+            border-bottom: 3px solid #55efc4;
+        }
+
+        .article-card h3 {
+            font-family: 'Bitter', serif;
+            font-size: 1.6rem;
+            color: #2d3436;
+            margin-top: 35px;
+            margin-bottom: 20px;
+        }
+
+        .article-card p {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            margin-bottom: 20px;
+            text-align: justify;
+        }
+
+        .article-card ul {
+            margin: 20px 0;
+            padding-left: 30px;
+        }
+
+        .article-card ul li {
+            font-size: 1.05rem;
+            line-height: 1.8;
+            margin-bottom: 10px;
+        }
+
+        .article-card strong {
+            color: #00b894;
+            font-weight: 600;
+        }
+
+        /* Event List */
+        .event-item {
+            background: linear-gradient(135deg, #dfe6e9 0%, #b2bec3 100%);
+            padding: 20px;
+            border-radius: 12px;
+            margin-bottom: 15px;
+            border-left: 5px solid #00b894;
+        }
+
+        .event-item strong {
+            color: #2d3436;
+        }
+
+        /* Rules Section */
+        .rules-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            margin: 30px 0;
+        }
+
+        .rules-column {
+            background: #f8f9fa;
+            padding: 25px;
+            border-radius: 15px;
+            border: 2px solid #e9ecef;
+        }
+
+        .rules-column h4 {
+            font-family: 'Bitter', serif;
+            font-size: 1.4rem;
+            margin-bottom: 15px;
+            color: #00b894;
+        }
+
+        .rules-column.do {
+            border-color: #00b894;
+        }
+
+        .rules-column.dont {
+            border-color: #d63031;
+        }
+
+        .rules-column.dont h4 {
+            color: #d63031;
+        }
+
+        /* Team Section */
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin: 25px 0;
+        }
+
+        .team-member {
+            background: linear-gradient(135deg, #55efc4 0%, #00b894 100%);
+            color: white;
+            padding: 20px;
+            border-radius: 12px;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0, 184, 148, 0.3);
+        }
+
+        .team-member .name {
+            font-weight: 700;
+            font-size: 1.1rem;
+            margin-bottom: 5px;
+        }
+
+        .team-member .role {
+            font-size: 0.95rem;
+            opacity: 0.9;
+        }
+
+        /* Authors Section */
+        .authors-section {
+            background: linear-gradient(135deg, #74b9ff 0%, #0984e3 100%);
+            color: white;
+            padding: 30px;
+            border-radius: 15px;
+            margin-top: 40px;
+        }
+
+        .authors-section h3 {
+            font-family: 'Bitter', serif;
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            color: white !important;
+        }
+
+        .authors-section ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .authors-section ul li {
+            font-size: 1.1rem;
+            padding: 8px 0;
+        }
+
+        /* Footer */
+        footer.main-footer { 
+            background: #1a2332; 
+            color: #fff; 
+            padding: 40px 20px; 
+        }
+        
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+        }
+
+        footer h4 { 
+            margin-bottom: 15px; 
+            color: #fff; 
+            font-family: 'Bitter', serif;
+            font-size: 1.3rem;
+        }
+        
+        footer a { 
+            color: #ffffff; 
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        footer a:hover {
+            color: #cacaca;
+        }
+        
+        footer ul { 
+            list-style: none; 
+        }
+
+        footer ul li {
+            margin-bottom: 8px;
+        }
+        
+        .footer-bottom { 
+            text-align: center; 
+            margin-top: 40px; 
+            padding-top: 30px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            font-size: 0.9rem; 
+            opacity: 0.8; 
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                gap: 20px;
+                padding: 20px;
+            }
+            
+            .nav-list {
+                flex-wrap: wrap;
+                gap: 16px;
+                justify-content: center;
+            }
+
+            .hero-title {
+                font-size: 3rem;
+            }
+
+            .hero-subtitle {
+                font-size: 1.5rem;
+            }
+
+            .article-card {
+                padding: 30px 20px;
+            }
+
+            .rules-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .team-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header -->
+    <header class="main-header">
+        <div class="header-content">
+            <div class="logo-section">
+                <div class="journal-logo">
+                    <span class="logo-text">IUT</span>
+                    <span class="logo-subtitle">JOURNAL INTERNE</span>
+                </div>
+            </div>
+            <nav class="main-nav">
+                <ul class="nav-list">
+                    <li class="nav-item"><a href="index.html">Accueil</a></li>
+
+                    <li class="nav-item has-dropdown">
+                        <a href="#" class="dropdown-trigger">Info <span class="arrow">▾</span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="bde-live.html">Le BDE</a></li>
+                            <li><a href="campus-sportif.html">Campus Sportif</a></li>
+                            <li><a href="partenariats-iut.html">Les partenariats</a></li>
+                        </ul>
+                    </li>
+
+                    <li class="nav-item has-dropdown">
+                        <a href="#" class="dropdown-trigger">Event <span class="arrow">▾</span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="tournoi-petanque.html">Tournoi de Pétanque</a></li>
+                            <li><a href="iut-terrain.html">Tournois</a></li>
+                        </ul>
+                    </li>
+
+                    <li class="nav-item has-dropdown">
+                        <a href="#" class="dropdown-trigger">Articles <span class="arrow">▾</span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="bde-live.html">BDE Live</a></li>
+                            <li><a href="campus-sportif.html">Le Campus Sportif</a></li>
+                            <li><a href="gamenews.html">GameNews </a></li>
+                                                        
+                            <li><a href="iut-terrain.html">L'IUT entre sur le terrain !</a></li>
+                            <li><a href="jeux.html">Jeux </a></li>
+                            <li><a href="newsletter-detente.html"> Newsletter Détente</a></li>
+                            <li><a href="tournoi-petanque.html">Tournoi de Pétanque</a></li>
+
+                        </ul>
+                    </li>
+                    <li class="nav-item"><a href="contact.html">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero-section">
+        <h1 class="hero-title">Newsletter Détente</h1>
+        <p class="hero-subtitle">La salle détente est à votre disposition,<br>avec un magnifique canapé mis en exposition.</p>
+        <div class="hero-meta">Journal de la salle de repos • Janvier 2026</div>
+    </section>
+
+    <!-- Main Content -->
+    <div class="content-container">
+        <article class="article-card">
+            <h2>Présentation de la salle de repos</h2>
+            <p>
+                Parmi l'ensemble des filières dans l'IUT Gaston Berger, le département informatique est le seul à avoir 2 salles dédiées uniquement à la vie étudiante, la salle du BDE et la salle détente. Entre les deux salles, celle qui nous intéresse est la salle détente située en début de couloir du deuxième étage à côté du BDE.
+            </p>
+            <p>
+                La salle de détente est composée de plusieurs tables et chaises permettant de manger, discuter, travailler seul ou avec des amis. Elle a aussi un canapé dans lequel on peut se reposer ainsi qu'un câble HDMI pouvant être relié au vidéoprojecteur, donnant la possibilité de projeter ses sessions de jeu ou d'autres contenus vidéo pour les regarder. Elle n'a pas une utilité fixe, elle est pour tous et pour tout, servant même de cantine improvisée pendant la Nuit de l'info.
+            </p>
+
+            <h3>Historique des incidents/événements passés et à venir</h3>
+            
+            <div class="event-item">
+                <strong>Le 14 :</strong> Déroulement d'un match de jeu de rythme (Phira), opposant Matisse QUILLIEC à Alexandre BENHAFESSA (Victoire d'Alexandre).
+            </div>
+
+            <div class="event-item">
+                <strong>Le 19 :</strong> Les étudiants de troisième année ont organisé une réunion avec des entreprises. Pour l'occasion, ils avaient commandé beaucoup de nourriture, dont une grande partie resta non consommée. Vers la fin de la pause de midi, nous avons déplacé la nourriture restante dans la salle détente pour que tout le monde puisse se servir. Au final ce fût une bonne idée, car à la fin de la journée il ne restait plus rien.
+            </div>
+
+            <div class="event-item">
+                <strong>Le 26 :</strong> Un groupe de 5 étudiants de deuxième année ont fait une session d'enregistrement pour le doublage d'une vidéo. Les membres de ce groupe étaient Valentin BAURENS-TORRENTE, Aline DUMONT, Oliver GUDENSCHWAGER, Matisse QUILLIEC et Esteban TORO.
+            </div>
+
+            <h3>Équipe et réglementation</h3>
+
+            <h4 style="margin-top: 25px; margin-bottom: 20px; font-size: 1.3rem; color: #2d3436;">Réglementation:</h4>
+            
+            <div class="rules-grid">
+                <div class="rules-column do">
+                    <h4>À faire:</h4>
+                    <ul>
+                        <li>Jeter ses déchets et nettoyer les tables</li>
+                        <li>Effacer le tableau après utilisation</li>
+                        <li>Laisser la porte ouverte</li>
+                        <li>Maintenir la propreté de la salle</li>
+                        <li>Faire preuve de bon sens… et de civisme</li>
+                    </ul>
+                </div>
+
+                <div class="rules-column dont">
+                    <h4>À ne pas faire:</h4>
+                    <ul>
+                        <li>Bruit excessif</li>
+                        <li>Toute détérioration (ex. casser la porte)</li>
+                        <li>Laisser le mobilier en désordre</li>
+                        <li>Déplacer le mobilier de la salle</li>
+                        <li>Comportement inapproprié</li>
+                    </ul>
+                </div>
+            </div>
+
+            <h4 style="margin-top: 35px; margin-bottom: 20px; font-size: 1.3rem; color: #2d3436;">Équipe en charge:</h4>
+            
+            <div class="team-grid">
+                <div class="team-member">
+                    <div class="name">QUILLIEC Matisse</div>
+                    <div class="role">BUT2 A2</div>
+                </div>
+                <div class="team-member">
+                    <div class="name">TORO Esteban</div>
+                    <div class="role">BUT2 A2</div>
+                </div>
+                <div class="team-member">
+                    <div class="name">BENHAFESSA Alexandre</div>
+                    <div class="role">BUT2 B</div>
+                </div>
+                <div class="team-member">
+                    <div class="name">EDELSTEIN William</div>
+                    <div class="role">BUT2 B</div>
+                </div>
+                <div class="team-member">
+                    <div class="name">BOUDIA--THOMAS Akcyl</div>
+                    <div class="role">BUT2 A1</div>
+                </div>
+                <div class="team-member">
+                    <div class="name">GIUSIANO Éloïse</div>
+                    <div class="role">BUT2 A1</div>
+                </div>
+            </div>
+                        
+            <p class="author-info">Rédigé par : Oliver GUDENSCHWAGER, Matisse QUILLIEC et Esteban TORO</p>
+
+
+            
+    </div>
+
+    <!-- Footer -->
+    <footer class="main-footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>Contact</h4>
+                    <p>
+                        IUT Aix-Marseille – Site d'Aix-en-Provence<br>
+                        Département Informatique<br>
+                        413 avenue Gaston Berger<br>
+                        13625 Aix-en-Provence cedex 01<br>
+                        Téléphone 04 13 94 63 00<br>
+                        Email : iut-aix-informatique@univ-amu.fr
+                    </p>
+                </div>
+                <div class="footer-section">
+                    <h4>Rubriques</h4>
+                    <ul>
+                        <li><a href="vie-etudiante.html">La vie étudiante de l'IUT</a></li>
+                        <li><a href="etudier-iut.html">Étudier à l'IUT</a></li>
+                        <li><a href="pourquoi-but-info.html">Pourquoi BUT Info</a></li>
+                        <li><a href="alumni.html">Alumnis</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                &copy; 2026 Journal IUT Info - Tous droits réservés
+            </div>
+        </div>
+    </footer>
+
+
+    <!-- Dropdown JS -->
+    <script>
+        document.querySelectorAll('.dropdown-trigger').forEach(trigger => {
+            trigger.addEventListener('click', e => {
+                e.preventDefault();
+            });
+        });
+    </script>
+
+</body>
+</html>

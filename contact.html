@@ -177,11 +177,15 @@
                         </ul>
                     </li>
                     <li class="nav-item has-dropdown">
-                        <a href="#" class="dropdown-trigger">Article <span class="arrow">▾</span></a>
+                        <a href="#" class="dropdown-trigger">Articles <span class="arrow">▾</span></a>
                         <ul class="dropdown-menu">
-                            <li><a href="article-debouches.html">Débouchés & Métiers</a></li>
-                            <li><a href="article-alumni.html">Témoignages Alumni</a></li>
-                            <li><a href="article-secteur.html">Secteur Informatique</a></li>
+                            <li><a href="bde-live.html">BDE Live</a></li>
+                            <li><a href="campus-sportif.html">Le Campus Sportif</a></li>
+                            <li><a href="gamenews.html">GameNews </a></li>
+                            <li><a href="iut-terrain.html">L'IUT entre sur le terrain !</a></li>
+                            <li><a href="jeux.html">Jeux </a></li>
+                            <li><a href="newsletter-detente.html"> Newsletter Détente</a></li>
+                            <li><a href="tournoi-petanque.html">Tournoi de Pétanque</a></li>
                         </ul>
                     </li>
                     <li class="nav-item active">
@@ -273,20 +277,24 @@
         <div class="container">
             <div class="footer-content">
                 <div class="footer-section">
-                    <h4>À Propos</h4>
-                    <p>Journal interne du département informatique de l'IUT Aix-Marseille Université. Réalisé par les étudiants de seconde année.</p>
+                    <h4>Contact</h4>
+                    <p>
+                        IUT Aix-Marseille – Site d'Aix-en-Provence<br>
+                        Département Informatique<br>
+                        413 avenue Gaston Berger<br>
+                        13625 Aix-en-Provence cedex 01<br>
+                        Téléphone 04 13 94 63 00<br>
+                        Email : iut-aix-informatique@univ-amu.fr
+                    </p>
                 </div>
                 <div class="footer-section">
                     <h4>Rubriques</h4>
                     <ul>
-                        <li><a href="info-formations.html">Formations & SAE</a></li>
-                        <li><a href="event-bde.html">Vie Étudiante</a></li>
-                        <li><a href="article-debouches.html">Débouchés</a></li>
+                        <li><a href="vie-etudiante.html">La vie étudiante de l'IUT</a></li>
+                        <li><a href="etudier-iut.html">Étudier à l'IUT</a></li>
+                        <li><a href="pourquoi-but-info.html">Pourquoi BUT Info</a></li>
+                        <li><a href="alumni.html">Alumni</a></li>
                     </ul>
-                </div>
-                <div class="footer-section">
-                    <h4>Contact</h4>
-                    <p>IUT Aix-Marseille Université<br>Département Informatique<br>Aix-en-Provence</p>
                 </div>
             </div>
             <div class="footer-bottom">
@@ -297,6 +305,13 @@
 
     <script src="script.js"></script>
     <script>
+        // Handle dropdown menu
+        document.querySelectorAll('.dropdown-trigger').forEach(trigger => {
+            trigger.addEventListener('click', e => {
+                e.preventDefault();
+            });
+        });
+
         // Handle form submission
         document.querySelector('.contact-form').addEventListener('submit', function(e) {
             e.preventDefault();
