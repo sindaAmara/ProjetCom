@@ -1,0 +1,637 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Les gestionnaires de mots de passe | Journal IUT Info</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bitter:wght@400;600;700&family=Source+Sans+3:wght@300;400;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #1a2332;
+            --secondary-color: #667eea;
+            --accent-color: #f5576c;
+            --security-primary: #2d3748;
+            --security-secondary: #4299e1;
+            --security-warning: #ed8936;
+            --text-dark: #1a1a2e;
+            --text-light: #6b7280;
+            --bg-light: #f9fafb;
+            --bg-white: #ffffff;
+            --border-color: #e5e7eb;
+            --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            --shadow-lg: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body { 
+            font-family: 'Source Sans 3', sans-serif; 
+            color: #333; 
+            line-height: 1.7; 
+            background: #f5f5f5;
+        }
+
+        /* Header */
+        .main-header {
+            background: var(--bg-white);
+            box-shadow: var(--shadow);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 3px solid var(--secondary-color);
+        }
+        
+        .header-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            min-height: 80px;
+        }
+
+        .journal-logo {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .logo-text {
+            font-family: 'Bitter', serif;
+            font-size: 32px;
+            font-weight: 700;
+            color: var(--primary-color);
+            letter-spacing: -1px;
+        }
+
+        .logo-subtitle {
+            font-size: 11px;
+            font-weight: 600;
+            color: var(--secondary-color);
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-top: -4px;
+        }
+
+        .main-nav {
+            display: flex;
+        }
+
+        .nav-list {
+            list-style: none;
+            display: flex;
+            gap: 32px;
+            align-items: center;
+            margin: 0;
+            padding: 0;
+        }
+
+        .nav-item {
+            position: relative;
+        }
+
+        .nav-item a {
+            text-decoration: none;
+            color: var(--text-dark);
+            font-weight: 600;
+            font-size: 15px;
+            padding: 8px 0;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            transition: color 0.3s ease;
+        }
+
+        .nav-item a:hover {
+            color: var(--secondary-color);
+        }
+
+        .arrow {
+            font-size: 12px;
+            transition: transform 0.3s ease;
+        }
+
+        .nav-item:hover .arrow {
+            transform: rotate(180deg);
+        }
+
+        .dropdown-menu {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background: var(--bg-white);
+            list-style: none;
+            min-width: 220px;
+            box-shadow: var(--shadow-lg);
+            border-radius: 8px;
+            padding: 12px 0;
+            margin-top: 8px;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-10px);
+            transition: all 0.3s ease;
+            border-top: 3px solid var(--secondary-color);
+        }
+
+        .nav-item:hover .dropdown-menu {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .dropdown-menu li {
+            padding: 0;
+        }
+
+        .dropdown-menu a {
+            display: block;
+            padding: 12px 20px;
+            color: var(--text-dark);
+            font-weight: 500;
+            transition: all 0.2s ease;
+        }
+
+        .dropdown-menu a:hover {
+            background: var(--bg-light);
+            color: var(--secondary-color);
+            padding-left: 24px;
+        }
+
+        /* Hero Section */
+        .hero-section {
+            background: linear-gradient(135deg, #2d3748 0%, #1a202c 100%);
+            padding: 80px 20px;
+            text-align: center;
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-section::before {
+            content: '🔐 🛡️ 🔑 🔒 🔓';
+            position: absolute;
+            top: 20px;
+            left: 0;
+            right: 0;
+            font-size: 3rem;
+            opacity: 0.1;
+            letter-spacing: 80px;
+            animation: float 20s infinite ease-in-out;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+
+        .hero-title {
+            font-family: 'Bitter', serif;
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            text-shadow: 3px 3px 0px rgba(0,0,0,0.3);
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-subtitle {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            font-weight: 300;
+            opacity: 0.95;
+            max-width: 900px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .hero-meta {
+            font-size: 0.95rem;
+            opacity: 0.8;
+        }
+
+        /* Main Content */
+        .content-container {
+            max-width: 1000px;
+            margin: -40px auto 60px;
+            padding: 0 20px;
+        }
+
+        /* Article Card */
+        .article-card {
+            background: white;
+            border-radius: 20px;
+            padding: 50px;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+        }
+
+        .article-card h2 {
+            font-family: 'Bitter', serif;
+            font-size: 2.2rem;
+            color: #2d3748;
+            margin-bottom: 25px;
+            margin-top: 35px;
+        }
+
+        .article-card h2:first-child {
+            margin-top: 0;
+        }
+
+        .article-card p {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            margin-bottom: 20px;
+            text-align: justify;
+        }
+
+        .article-card strong {
+            color: #2d3748;
+            font-weight: 600;
+        }
+
+        /* Warning Box */
+        .warning-box {
+            background: linear-gradient(135deg, #fed7d7 0%, #feb2b2 100%);
+            border-left: 5px solid #fc8181;
+            padding: 25px;
+            border-radius: 12px;
+            margin: 30px 0;
+        }
+
+        .warning-box p {
+            color: #742a2a;
+            margin: 0;
+            font-weight: 500;
+        }
+
+        /* Info Box */
+        .info-box {
+            background: linear-gradient(135deg, #bee3f8 0%, #90cdf4 100%);
+            border-left: 5px solid #4299e1;
+            padding: 25px;
+            border-radius: 12px;
+            margin: 30px 0;
+        }
+
+        .info-box p {
+            color: #2c5282;
+            margin: 0;
+            font-weight: 500;
+        }
+
+        /* Solutions Grid */
+        .solutions-section {
+            margin-top: 50px;
+        }
+
+        .solution-card {
+            background: linear-gradient(135deg, #f7fafc 0%, #edf2f7 100%);
+            border-radius: 15px;
+            padding: 35px;
+            margin-bottom: 25px;
+            border-left: 5px solid #4299e1;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .solution-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+        }
+
+        .solution-card h3 {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 2rem;
+            color: #2d3748;
+            margin-bottom: 20px;
+        }
+
+        .solution-card p {
+            font-size: 1.05rem;
+            line-height: 1.7;
+            color: #4a5568;
+            margin: 0;
+        }
+
+        .solution-features {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .feature-item {
+            background: white;
+            padding: 15px;
+            border-radius: 8px;
+            font-size: 0.95rem;
+        }
+
+        .feature-item.pro {
+            border-left: 3px solid #48bb78;
+        }
+
+        .feature-item.con {
+            border-left: 3px solid #f56565;
+        }
+
+        .feature-label {
+            font-weight: 700;
+            margin-bottom: 5px;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .feature-item.pro .feature-label {
+            color: #48bb78;
+        }
+
+        .feature-item.con .feature-label {
+            color: #f56565;
+        }
+
+        /* Footer */
+        footer.main-footer { 
+            background: #1a2332; 
+            color: #fff; 
+            padding: 40px 20px; 
+        }
+        
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+        }
+
+        footer h4 { 
+            margin-bottom: 15px; 
+            color: #fff; 
+            font-family: 'Bitter', serif;
+            font-size: 1.3rem;
+        }
+        
+        footer a { 
+            color: #4299e1; 
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        footer a:hover {
+            color: #63b3ed;
+        }
+        
+        footer ul { 
+            list-style: none; 
+        }
+
+        footer ul li {
+            margin-bottom: 8px;
+        }
+        
+        .footer-bottom { 
+            text-align: center; 
+            margin-top: 40px; 
+            padding-top: 30px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            font-size: 0.9rem; 
+            opacity: 0.8; 
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                gap: 20px;
+                padding: 20px;
+            }
+            
+            .nav-list {
+                flex-wrap: wrap;
+                gap: 16px;
+                justify-content: center;
+            }
+
+            .hero-title {
+                font-size: 2.5rem;
+            }
+
+            .hero-subtitle {
+                font-size: 1.2rem;
+            }
+
+            .article-card {
+                padding: 30px 20px;
+            }
+
+            .solution-features {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header -->
+    <header class="main-header">
+        <div class="header-content">
+            <div class="logo-section">
+                <div class="journal-logo">
+                    <span class="logo-text">IUT</span>
+                    <span class="logo-subtitle">JOURNAL INTERNE</span>
+                </div>
+            </div>
+            <nav class="main-nav">
+                <ul class="nav-list">
+                    <li class="nav-item"><a href="index.html">Accueil</a></li>
+
+                    <li class="nav-item has-dropdown">
+                        <a href="#" class="dropdown-trigger">Info <span class="arrow">▾</span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="info-formations.html">Formations & SAE</a></li>
+                            <li><a href="info-erasmus.html">Erasmus</a></li>
+                            <li><a href="info-musee.html">Musée de l'Informatique</a></li>
+                        </ul>
+                    </li>
+
+                    <li class="nav-item has-dropdown">
+                        <a href="#" class="dropdown-trigger">Event <span class="arrow">▾</span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="vie-etudiante.html">Vie Étudiante</a></li>
+                            <li><a href="event-tournois.html">Tournois</a></li>
+                            <li><a href="event-sport.html">Sport & Loisirs</a></li>
+                        </ul>
+                    </li>
+
+                    <li class="nav-item has-dropdown">
+                        <a href="#" class="dropdown-trigger">Article <span class="arrow">▾</span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="pourquoi-but-info.html">Débouchés & Métiers</a></li>
+                            <li><a href="alumni.html">Témoignages Alumni</a></li>
+                            <li><a href="article-secteur.html">Secteur Informatique</a></li>
+                        </ul>
+                    </li>
+
+                    <li class="nav-item"><a href="contact.html">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero-section">
+        <h1 class="hero-title">Les gestionnaires de mots de passe</h1>
+        <p class="hero-subtitle">Une épée de Damoclès au-dessus de nos données ?</p>
+        <div class="hero-meta">Article Sécurité Informatique • Janvier 2026</div>
+    </section>
+
+    <!-- Main Content -->
+    <div class="content-container">
+        <article class="article-card">
+            <p>
+                Depuis les années 2000-2010, avec l'avènement dans le grand public d'Internet et des réseaux sociaux, nous avons vu de plus en plus de plateformes en ligne demander la création d'un compte pour avoir accès à la plateforme. De ce fait, nous donnions des informations personnelles pour améliorer les recommandations et faciliter le déroulé de certaines actions comme des commandes en ligne par exemple. Bien pratique que le site Web se souvienne de mon moyen de paiement et d'où j'habite quand je commande à de multiples reprises, n'est-ce pas ? Et de toute manière, ces données sont cachées derrière mon mot de passe, je ne crains rien.
+            </p>
+
+            <p>
+                Et bien, pas totalement. Bien que le mot de passe soit un système de sécurité plutôt fiable sur le papier, il l'est seulement si l'utilisateur se prête au jeu de la robustesse. Et souvent ce n'est pas le cas : au début on met un mot de passe unique de 12 caractères, une lettre majuscule et minuscule, puis un caractère spécial. Puis vient le moment de créer un second compte, puis un troisième. Et là, le problème se fait ressentir, très vite on choisit de mettre le même mot de passe partout et d'utiliser des mots de passe simples pour ne presque pas avoir à les retenir.
+            </p>
+
+            <p>
+                Voyant le problème grandir chez les utilisateurs, des entreprises ont proposé un service de gestionnaire de mots de passe à leurs clients. De ce fait, du moment qu'ils étaient sur un appareil connecté à leur compte, Google ou Apple par exemple, et bien les mots de passe étaient saisis automatiquement par l'appareil. Ainsi, notre appareil gère pour nous la multitude de comptes en ligne que nous utilisons quotidiennement.
+            </p>
+
+            <div class="warning-box">
+                <p>
+                    <strong>⚠️ Le problème de la centralisation :</strong> Voilà ! Solution trouvée pour résoudre le problème des mots de passe. Et bien non, malheureusement le problème vient justement de la centralisation de tous ces mots de passe. Tous les mots de passe de tous les utilisateurs sont dans un seul système commun ; ils sont chiffrés, mais la clé de décryptage fait elle aussi partie de ce réseau, rendant malheureusement ce système très vulnérable.
+                </p>
+            </div>
+
+            <p>
+                En effet, pour des pirates, ce système est très intéressant : s'ils arrivent à forcer l'entrée d'une seule base de données, ils pourront récupérer des données de milliers d'utilisateurs et ainsi de leurs centaines de comptes respectifs contenant un ensemble de données personnelles et sensibles.
+            </p>
+
+            <div class="info-box">
+                <p>
+                    <strong>📊 Chiffres clés :</strong> La CNIL a souligné en 2024 que près de 80 % des violations de données massives étaient dues à l'usurpation de comptes protégés uniquement par un mot de passe, y compris ceux gérés par des outils en ligne. Cela a poussé les autorités à recommander l'adoption systématique de l'authentification multifacteur, même pour les gestionnaires de mots de passe.
+                </p>
+            </div>
+
+            <h2>Alors, quelle est la solution ? Comment garantir que mes données sensibles restent sous mon contrôle ?</h2>
+
+            <p>
+                Il n'existe pas de solution pour garantir la pérennité de vos données, par contre vous pouvez faire en sorte de les protéger bien plus efficacement, et ce très facilement. Tout d'abord, il faut comprendre comment fonctionne le chiffrement de vos mots de passe. Tout commence avec vos mots de passe en clair qui sont convertis en chiffres qui sont ensuite factorisés en nombres premiers, et ce jusqu'à avoir un nombre de solutions presque infini. De cette façon, retrouver le nombre d'origine sans indice est impossible ; cet indice, c'est la clé de décryptage. Cette clé, justement, pour faciliter l'utilisation aux personnes ne s'y connaissant pas, est stockée et gérée par l'entreprise derrière le gestionnaire de mots de passe.
+            </p>
+
+            <p>
+                En sachant cela, deux solutions nous viennent à l'esprit. La première, dans un premier temps, est de demander à détenir cette clé vous-même, que vous stockerez vous, et dans le cas d'une fuite de la base de données du gestionnaire de mots de passe, vous serez plus serein étant donné que les pirates n'auront que des mots de passe chiffrés vous concernant.
+            </p>
+
+            <p>
+                Le deuxième moyen est encore plus radical, moins robuste mais plus discret. Et si vous hébergiez votre gestionnaire de mots de passe directement chez vous, en local sur l'une de vos machines, et que vous choisissiez de stocker la clé loin du réseau, et bien vous ne craindriez presque plus aucune fuite. Concrètement, votre gestionnaire de mots de passe disposera forcément de moins de sécurité que s'il était sur des serveurs d'une multinationale, par contre il se fera aussi bien moins remarquer. Pour des pirates, pirater une base de données d'une organisation semble évident et garantit un grand nombre de données, alors que vous pirater vous, c'est bien plus spécifique et moins rentable en termes de données.
+            </p>
+
+            <div class="solutions-section">
+                <h2>Voici notre sélection de gestionnaire de mots de passe selon vos besoins</h2>
+
+                <div class="solution-card">
+                    <h3>1Password</h3>
+                    <p>
+                        C'est un logiciel simple d'utilisation qui propose des solutions de partage simple et une application mobile très fiable. Cependant c'est une solution propriétaire et donc ne permet pas l'hébergement depuis chez soi. En revanche la clé n'est présente que sur votre appareil, elle est générée localement sur votre appareil lors de la création de votre compte. Cette clé n'est jamais envoyée à 1Password et reste stockée uniquement sur vos appareils.
+                    </p>
+                    <div class="solution-features">
+                        <div class="feature-item pro">
+                            <div class="feature-label">✓ Avantages</div>
+                            Simple d'utilisation, application mobile fiable, clé stockée localement
+                        </div>
+                        <div class="feature-item con">
+                            <div class="feature-label">✗ Inconvénients</div>
+                            Solution propriétaire, pas d'auto-hébergement
+                        </div>
+                    </div>
+                </div>
+
+                <div class="solution-card">
+                    <h3>Bitwarden</h3>
+                    <p>
+                        C'est un logiciel open-source et qui permet cette fois l'auto-hébergement, étant open source elle dispose d'améliorations régulières. Cependant il existe une version payante avec stockage sur le cloud et pour autant l'application mobile est souvent critiquée. Pareil ici vous êtes le seul à posséder la clé de décryptage.
+                    </p>
+                    <div class="solution-features">
+                        <div class="feature-item pro">
+                            <div class="feature-label">✓ Avantages</div>
+                            Open-source, auto-hébergement possible, améliorations régulières
+                        </div>
+                        <div class="feature-item con">
+                            <div class="feature-label">✗ Inconvénients</div>
+                            Application mobile critiquée, version payante pour certaines fonctionnalités
+                        </div>
+                    </div>
+                </div>
+
+                <div class="solution-card">
+                    <h3>KeePass</h3>
+                    <p>
+                        Enfin KeePass, c'est aussi un logiciel open-source mais cette fois beaucoup plus poussé vers l'indépendance totale. Tout est en local, vous détenez tous les paramètres de chiffrement et de déchiffrement. Par contre évidemment c'est un système beaucoup plus compliqué à mettre en place, il nécessite donc une certaine connaissance du sujet.
+                    </p>
+                    <div class="solution-features">
+                        <div class="feature-item pro">
+                            <div class="feature-label">✓ Avantages</div>
+                            Indépendance totale, tout en local, contrôle complet du chiffrement
+                        </div>
+                        <div class="feature-item con">
+                            <div class="feature-label">✗ Inconvénients</div>
+                            Système complexe, nécessite des connaissances techniques
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </article>
+    </div>
+
+    <!-- Footer -->
+    <footer class="main-footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h4>Contact</h4>
+                <p>
+                    IUT Aix-Marseille – Site d'Aix-en-Provence<br>
+                    Département Informatique<br>
+                    413 avenue Gaston Berger<br>
+                    13625 Aix-en-Provence cedex 01<br>
+                    Téléphone 04 13 94 63 00<br>
+                    Email : iut-aix-informatique@univ-amu.fr
+                </p>
+            </div>
+            <div class="footer-section">
+                <h4>Rubriques</h4>
+                <ul>
+                    <li><a href="vie-etudiante.html">La vie étudiante de l'IUT</a></li>
+                    <li><a href="etudier-iut.html">Étudier à l'IUT</a></li>
+                    <li><a href="pourquoi-but-info.html">Pourquoi BUT Info</a></li>
+                    <li><a href="alumni.html">Alumni</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            &copy; 2026 Journal IUT Info - Tous droits réservés
+        </div>
+    </footer>
+
+    <!-- Dropdown JS -->
+    <script>
+        document.querySelectorAll('.dropdown-trigger').forEach(trigger => {
+            trigger.addEventListener('click', e => {
+                e.preventDefault();
+            });
+        });
+    </script>
+
+</body>
+</html>
