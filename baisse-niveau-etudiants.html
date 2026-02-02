@@ -1,0 +1,587 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Baisse du niveau général des étudiants | Journal IUT Info</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bitter:wght@400;600;700&family=Source+Sans+3:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #1a2332;
+            --secondary-color: #667eea;
+            --accent-color: #f5576c;
+            --text-dark: #1a1a2e;
+            --text-light: #6b7280;
+            --bg-light: #f9fafb;
+            --bg-white: #ffffff;
+            --border-color: #e5e7eb;
+            --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            --shadow-lg: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body { 
+            font-family: 'Source Sans 3', sans-serif; 
+            color: #333; 
+            line-height: 1.7; 
+            background: #f5f5f5;
+        }
+
+        /* Header */
+        .main-header {
+            background: var(--bg-white);
+            box-shadow: var(--shadow);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 3px solid var(--secondary-color);
+        }
+        
+        .header-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            min-height: 80px;
+        }
+
+        .journal-logo {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .logo-text {
+            font-family: 'Bitter', serif;
+            font-size: 32px;
+            font-weight: 700;
+            color: var(--primary-color);
+            letter-spacing: -1px;
+        }
+
+        .logo-subtitle {
+            font-size: 11px;
+            font-weight: 600;
+            color: var(--secondary-color);
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-top: -4px;
+        }
+
+        .main-nav {
+            display: flex;
+        }
+
+        .nav-list {
+            list-style: none;
+            display: flex;
+            gap: 32px;
+            align-items: center;
+            margin: 0;
+            padding: 0;
+        }
+
+        .nav-item {
+            position: relative;
+        }
+
+        .nav-item a {
+            text-decoration: none;
+            color: var(--text-dark);
+            font-weight: 600;
+            font-size: 15px;
+            padding: 8px 0;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            transition: color 0.3s ease;
+        }
+
+        .nav-item a:hover {
+            color: var(--secondary-color);
+        }
+
+        .arrow {
+            font-size: 12px;
+            transition: transform 0.3s ease;
+        }
+
+        .nav-item:hover .arrow {
+            transform: rotate(180deg);
+        }
+
+        .dropdown-menu {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background: var(--bg-white);
+            list-style: none;
+            min-width: 220px;
+            box-shadow: var(--shadow-lg);
+            border-radius: 8px;
+            padding: 12px 0;
+            margin-top: 8px;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-10px);
+            transition: all 0.3s ease;
+            border-top: 3px solid var(--secondary-color);
+        }
+
+        .nav-item:hover .dropdown-menu {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .dropdown-menu li {
+            padding: 0;
+        }
+
+        .dropdown-menu a {
+            display: block;
+            padding: 12px 20px;
+            color: var(--text-dark);
+            font-weight: 500;
+            transition: all 0.2s ease;
+        }
+
+        .dropdown-menu a:hover {
+            background: var(--bg-light);
+            color: var(--secondary-color);
+            padding-left: 24px;
+        }
+
+        /* Hero Section */
+        .hero-section {
+            background: linear-gradient(135deg, #dc2626 0%, #991b1b 100%);
+            padding: 80px 20px;
+            text-align: center;
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-section::before {
+            content: '📊 📚 🎓 📈 📉';
+            position: absolute;
+            top: 20px;
+            left: 0;
+            right: 0;
+            font-size: 3rem;
+            opacity: 0.2;
+            letter-spacing: 80px;
+            animation: float 20s infinite ease-in-out;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+
+        .hero-title {
+            font-family: 'Bitter', serif;
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            text-shadow: 3px 3px 0px rgba(0,0,0,0.2);
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-subtitle {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            font-weight: 300;
+            opacity: 0.95;
+        }
+
+        .hero-meta {
+            font-size: 0.95rem;
+            opacity: 0.9;
+        }
+
+        /* Main Content */
+        .content-container {
+            max-width: 1000px;
+            margin: -40px auto 60px;
+            padding: 0 20px;
+        }
+
+        /* Featured Image */
+        .featured-image {
+            background: white;
+            border-radius: 20px 20px 0 0;
+            padding: 0;
+            overflow: hidden;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+        }
+
+        .featured-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        /* Article Card */
+        .article-card {
+            background: white;
+            border-radius: 0 0 20px 20px;
+            padding: 50px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+        }
+
+        .article-card h2 {
+            font-family: 'Bitter', serif;
+            font-size: 2.2rem;
+            color: #dc2626;
+            margin-bottom: 25px;
+            margin-top: 40px;
+        }
+
+        .article-card h2:first-child {
+            margin-top: 0;
+        }
+
+        .article-card p {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            margin-bottom: 20px;
+            text-align: justify;
+        }
+
+        .article-card strong {
+            color: #dc2626;
+            font-weight: 600;
+        }
+
+        /* Stats Box */
+        .stats-box {
+            background: linear-gradient(135deg, #e0f2fe 0%, #bae6fd 100%);
+            border-left: 5px solid #0284c7;
+            padding: 25px;
+            border-radius: 12px;
+            margin: 30px 0;
+        }
+
+        .stats-box p {
+            color: #0c4a6e;
+            margin: 0;
+            font-weight: 500;
+        }
+
+        /* Highlight Box */
+        .highlight-box {
+            background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+            border-left: 5px solid #f59e0b;
+            padding: 25px;
+            border-radius: 12px;
+            margin: 30px 0;
+        }
+
+        .highlight-box p {
+            color: #78350f;
+            margin: 0;
+            font-weight: 500;
+        }
+
+        /* Question Box */
+        .question-box {
+            background: linear-gradient(135deg, #fce7f3 0%, #fbcfe8 100%);
+            border-left: 5px solid #ec4899;
+            padding: 25px;
+            border-radius: 12px;
+            margin: 30px 0;
+            font-style: italic;
+        }
+
+        .question-box p {
+            color: #831843;
+            margin: 0;
+            font-weight: 500;
+            font-size: 1.15rem;
+        }
+
+        /* Conclusion Box */
+        .conclusion-box {
+            background: linear-gradient(135deg, #d1fae5 0%, #a7f3d0 100%);
+            border-left: 5px solid #10b981;
+            padding: 30px;
+            border-radius: 12px;
+            margin: 40px 0;
+        }
+
+        .conclusion-box p {
+            color: #064e3b;
+            margin-bottom: 15px;
+            font-weight: 500;
+        }
+
+        .conclusion-box p:last-child {
+            margin-bottom: 0;
+        }
+
+        /* Footer */
+        footer.main-footer { 
+            background: #1a2332; 
+            color: #fff; 
+            padding: 40px 20px; 
+        }
+        
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+        }
+
+        footer h4 { 
+            margin-bottom: 15px; 
+            color: #fff; 
+            font-family: 'Bitter', serif;
+            font-size: 1.3rem;
+        }
+        
+        footer a { 
+            color: #fca5a5; 
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        footer a:hover {
+            color: #dc2626;
+        }
+        
+        footer ul { 
+            list-style: none; 
+        }
+
+        footer ul li {
+            margin-bottom: 8px;
+        }
+        
+        .footer-bottom { 
+            text-align: center; 
+            margin-top: 40px; 
+            padding-top: 30px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            font-size: 0.9rem; 
+            opacity: 0.8; 
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                gap: 20px;
+                padding: 20px;
+            }
+            
+            .nav-list {
+                flex-wrap: wrap;
+                gap: 16px;
+                justify-content: center;
+            }
+
+            .hero-title {
+                font-size: 2.5rem;
+            }
+
+            .hero-subtitle {
+                font-size: 1.2rem;
+            }
+
+            .article-card {
+                padding: 30px 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header -->
+    <header class="main-header">
+        <div class="header-content">
+            <div class="logo-section">
+                <div class="journal-logo">
+                    <span class="logo-text">IUT</span>
+                    <span class="logo-subtitle">JOURNAL INTERNE</span>
+                </div>
+            </div>
+            <nav class="main-nav">
+                <ul class="nav-list">
+                    <li class="nav-item"><a href="index.html">Accueil</a></li>
+
+                    <li class="nav-item has-dropdown">
+                        <a href="#" class="dropdown-trigger">Info <span class="arrow">▾</span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="info-formations.html">Formations & SAE</a></li>
+                            <li><a href="info-erasmus.html">Erasmus</a></li>
+                            <li><a href="info-musee.html">Musée de l'Informatique</a></li>
+                        </ul>
+                    </li>
+
+                    <li class="nav-item has-dropdown">
+                        <a href="#" class="dropdown-trigger">Event <span class="arrow">▾</span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="vie-etudiante.html">Vie Étudiante</a></li>
+                            <li><a href="event-tournois.html">Tournois</a></li>
+                            <li><a href="event-sport.html">Sport & Loisirs</a></li>
+                        </ul>
+                    </li>
+
+                    <li class="nav-item has-dropdown">
+                        <a href="#" class="dropdown-trigger">Article <span class="arrow">▾</span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="pourquoi-but-info.html">Débouchés & Métiers</a></li>
+                            <li><a href="alumni.html">Témoignages Alumni</a></li>
+                            <li><a href="article-secteur.html">Secteur Informatique</a></li>
+                        </ul>
+                    </li>
+
+                    <li class="nav-item"><a href="contact.html">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero-section">
+        <h1 class="hero-title">Baisse du niveau général des étudiants</h1>
+        <p class="hero-subtitle">Réalité ou Fake News ?</p>
+        <div class="hero-meta">Étude Alumni • Janvier 2026</div>
+    </section>
+
+    <!-- Main Content -->
+    <div class="content-container">
+        <div class="featured-image">
+            <img src="fake.png" alt="Baisse du niveau - Réalité ou Fake News">
+        </div>
+
+        <article class="article-card">
+            <p>
+                Depuis plusieurs années, une question revient régulièrement dans les médias, ainsi que durant les cours : "Le niveau des étudiants baisse-t-il vraiment au fil et à mesure du temps ?"
+            </p>
+
+            <p>
+                Entre rumeurs, nostalgie de l'ancien temps et données des différentes études, il est difficile de savoir ce qui est le vrai ou le faux.
+            </p>
+
+            <p>
+                Pourtant plusieurs études internationales, comme les enquêtes PISA de l'OCDE montrent une baisse notable des performances des élèves français, surtout en mathématiques et en compréhension écrite, ce qui engendre la question suivante à notre niveau : "Cette baisse se répercute-t-elle au sein de l'enseignement supérieur, plus précisément au BUT Informatique ?"
+            </p>
+
+            <p>
+                C'est à partir de ce questionnement que nous avons décidé d'élaborer notre propre étude : nous avons réalisé une enquête auprès des professeurs en établissant un sondage et en organisant des interviews.
+            </p>
+
+            <h2>Pourquoi cette étude ?</h2>
+
+            <p>
+                Tout d'abord, étant tous des étudiants du BUT Informatique, nous sommes directement concernés par cette question. Entre les évolutions des technologies, des méthodes pédagogiques, des comportements de la société qui génèrent des profils étudiants de plus en plus variés, nous avons souhaité prendre un regard extérieur sur la question et ne pas avoir un simple regard en tant qu'étudiant. Alors notre objectif a été de recueillir l'avis des enseignants, étant eux aussi au cœur de cette problématique mais ayant un regard plus objectif car pouvant faire plus facilement la différence entre les promotions.
+            </p>
+
+            <p>
+                Nous avons donc recueilli les avis des différents professeurs et vacataires au sein du BUT Informatique à l'aide d'un sondage. Cette démarche nous a permis de cerner le ressenti de l'équipe pédagogique sur cette question, mais aussi de collecter de nombreuses données que nous allons vous présenter et interpréter.
+            </p>
+
+            <div class="stats-box">
+                <p>
+                    <strong>📊 Résultat clé :</strong> Il est important de préciser que le constat n'est pas unanime : moins de la moitié des enseignants et vacataires interrogés affirme observer une baisse significative du niveau des étudiants (seulement 40% exactement, soit 6 sur 15 enseignants).
+                </p>
+            </div>
+
+            <p>
+                Pour ceux qui la constatent, cette baisse se manifeste concrètement par un manque d'investissement en cours et une pertinence plus faible dans les questions posées lors des activités, surtout par rapport aux promotions précédentes. Il faut noter que l'ensemble des enseignants percevant la baisse générale la confirment au sein de leur propre matière et que 100% d'entre eux disent avoir dû simplifier leur cours.
+            </p>
+
+            <h2>Mais quelles peuvent être les causes de ce déclin d'après le personnel pédagogique ?</h2>
+
+            <p>
+                Les retours pointent majoritairement vers un manque d'autonomie et de méthodologie de travail (citée par 100% professeurs qui pensent qu'il y a une baisse), accentués par une baisse de la capacité d'attention liée à l'usage excessif des écrans et réseaux sociaux. Certains enseignants soulignent également des facteurs structurels, comme la diminution des exigences académiques au fil du temps.
+            </p>
+
+            <div class="highlight-box">
+                <p>
+                    <strong>💡 Solutions suggérées :</strong> Intensifier le volume horaire, instaurer des heures de soutien obligatoires, ou encore adapter la pédagogie en rendant les cours plus interactifs et ludiques afin de re-capter l'intérêt des étudiants.
+                </p>
+            </div>
+
+            <p>
+                Lors de nos interviews au seins des professeurs du BUT Informatique, nous avons par ailleurs reçu un avis différent, selon lequel chaque promotion aurait un niveau variable, sans forcément baisser année après année. (Selon eux par exemple, les 2ème années actuels seraient meilleurs que les 2ème année de l'année dernière)
+            </p>
+
+            <div class="conclusion-box">
+                <p>
+                    Nous avons donc montré avec notre étude ainsi qu'avec les avis de différents professeurs de l'université, qu'il n'y a pas de réelle baisse du niveau général des étudiants au fil du temps, ou qu'en tout cas elle ne fait pas l'unanimité, les professeurs sont assez mitigés sur la question.
+                </p>
+                <p>
+                    Certains professeurs observent certaines difficultés, notamment en termes d'autonomie, de méthodologie de travail et d'attention, alors que d'autres trouvent plutôt une forte variabilité entre les promotions, sans pour autant baisser au fil des années.
+                </p>
+            </div>
+
+            <div class="question-box">
+                <p>
+                    Une question à laquelle nous pensons tous et qui reste en suspens : et si la prochaine baisse de niveau ne venait pas des étudiants, mais de leurs outils ?
+                </p>
+            </div>
+
+            <p>
+                Effectivement, l'intelligence artificielle, permettant d'obtenir des réponses immédiates, du code fonctionnel, des rapports rédigés en seulement quelques secondes. Le rapport à la réflexion, à l'apprentissage va être totalement chamboulé, ce qui soulève encore une question que se poseront sûrement les prochaines générations d'élèves et mêmes les enseignants : apprenons-nous réellement lorsqu'une machine peut penser à notre place ?
+            </p>
+
+            <p>
+                L'intelligence artificielle est-elle un propulseur pour le niveau global ou un raccourci dangereux qui masquerait les réelles difficultés ? Le débat sur le niveau des élèves ne fait que commencer…
+            </p>
+        </article>
+    </div>
+
+    <!-- Footer -->
+    <footer class="main-footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h4>Contact</h4>
+                <p>
+                    IUT Aix-Marseille – Site d'Aix-en-Provence<br>
+                    Département Informatique<br>
+                    413 avenue Gaston Berger<br>
+                    13625 Aix-en-Provence cedex 01<br>
+                    Téléphone 04 13 94 63 00<br>
+                    Email : iut-aix-informatique@univ-amu.fr
+                </p>
+            </div>
+            <div class="footer-section">
+                <h4>Rubriques</h4>
+                <ul>
+                    <li><a href="vie-etudiante.html">La vie étudiante de l'IUT</a></li>
+                    <li><a href="etudier-iut.html">Étudier à l'IUT</a></li>
+                    <li><a href="pourquoi-but-info.html">Pourquoi BUT Info</a></li>
+                    <li><a href="alumni.html">Alumni</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            &copy; 2026 Journal IUT Info - Tous droits réservés
+        </div>
+    </footer>
+
+    <!-- Dropdown JS -->
+    <script>
+        document.querySelectorAll('.dropdown-trigger').forEach(trigger => {
+            trigger.addEventListener('click', e => {
+                e.preventDefault();
+            });
+        });
+    </script>
+
+</body>
+</html>
