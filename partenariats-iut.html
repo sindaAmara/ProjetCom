@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BDELive – Solutions numériques pour le BDE | Journal IUT Info</title>
+    <title>Passeport Réussite : Services étudiants Aix-Marseille | Journal IUT Info</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Bitter:wght@400;600;700&family=Source+Sans+3:wght@300;400;600;700&display=swap" rel="stylesheet">
@@ -361,18 +361,9 @@
             transform: translateY(-2px);
             box-shadow: 0 8px 20px rgba(0,0,0,0.3);
         }
-        
-        /* Section problèmes */
-        .problem-section {
-            background: #fff5f5;
-            padding: 25px;
-            border-radius: 10px;
-            border-left: 5px solid #f5576c;
-            margin: 25px 0;
-        }
-        
-        /* Section solution */
-        .solution-section {
+
+        /* Section de service */
+        .service-card {
             background: #f0fff4;
             padding: 25px;
             border-radius: 10px;
@@ -380,12 +371,36 @@
             margin: 25px 0;
         }
 
-        .author-info {
-            font-style: italic;
-            color: #666;
-            margin-bottom: 25px;
-            padding-bottom: 15px;
-            border-bottom: 2px solid #e0e0e0;
+        .service-card-purple {
+            background: #f5f3ff;
+            padding: 25px;
+            border-radius: 10px;
+            border-left: 5px solid #764ba2;
+            margin: 25px 0;
+        }
+
+        .service-card-blue {
+            background: #eff6ff;
+            padding: 25px;
+            border-radius: 10px;
+            border-left: 5px solid #3b82f6;
+            margin: 25px 0;
+        }
+
+        .intro-section {
+            background: #fff5f5;
+            padding: 25px;
+            border-radius: 10px;
+            border-left: 5px solid #f5576c;
+            margin: 25px 0;
+        }
+
+        .tarif-box {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 15px 0;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
         }
 
         /* Footer */
@@ -523,9 +538,7 @@
                             <li><a href="tournoi-petanque.html">Tournoi de Pétanque</a></li>             
                             <li><a href="baisse-niveau-etudiants.html">Baisse du niveau général des étudiants</a></li>
                             <li><a href="securite-info.html">Les gestionnaires de mots de passe </a></li>
-                                                        
                             <li><a href="partenariats-iut.html">Passeport Réussite</a></li>
-
 
                         </ul>
                     </li>
@@ -539,11 +552,10 @@
     <!-- Hero Section -->
     <section class="hero-section">
         <div class="hero-content">
-            <img src="info.png" alt="BDELive Logo" class="hero-image">
             <div class="hero-text">
-                <h1 class="hero-title">BDELive – Solutions numériques pour le BDE</h1>
-                <p class="hero-subtitle">La plateforme qui centralise la vie étudiante et associative de l'IUT Informatique d'Aix</p>
-                <div class="hero-meta">Rubrique : La vie étudiante de l'IUT • 20 janvier 2026</div>
+                <h1 class="hero-title">Passeport Réussite</h1>
+                <p class="hero-subtitle">Ces services méconnus qui transforment votre vie étudiante à Aix-Marseille</p>
+                <div class="hero-meta">Rubrique : Les partenariats de l'IUT • 20 janvier 2026</div>
             </div>
         </div>
     </section>
@@ -551,66 +563,70 @@
     <!-- Article Content -->
     <section class="article-section">
         <div class="container">
-            <!-- Section vidéo -->
+            <h2>Introduction</h2>
+            
+            <div class="intro-section">
+                <p>Les étudiants de la région Aix-Marseille ont accès à de nombreux avantages, mais certains d'entre eux sont moins mis en avant que les autres. Certains de ces avantages sont promus par les universités comme le SUAPS qui permet aux étudiants d'exercer plus de 80 sports différents gratuitement (avec parfois une cotisation de 10€ par an selon les sports), ou encore Erasmus permettant d'aller effectuer un ou plusieurs semestres du cursus universitaire à l'étranger.</p>
+                
+                <p>Quant aux autres avantages, ils ne sont pas mis en avant mais existent bel et bien : ce sont ceux-ci que nous vous présenterons dans cette rubrique !</p>
+            </div>
+
+            <h3>Alumni : Votre réseau professionnel universitaire</h3>
+            
+            <div class="service-card-purple">
+                <p>Alumni est une plateforme en ligne lancée par l'université. C'est un réseau de type LinkedIn mais privé qui regroupe les étudiants actuels, les étudiants diplômés, le personnel de l'université ainsi que les entreprises partenaires de la région.</p>
+                
+                <p><strong>Cet outil contient plusieurs services spécifiques :</strong></p>
+                
+                <p>Il contient un annuaire, celui-ci permet de rechercher un ancien élève de l'université qui travaille aujourd'hui dans une entreprise afin de lui poser des questions. Le mentoring, cela permet à certains anciens d'élèves d'accompagner bénévolement des étudiants afin de construire leur projet professionnel ou même relire leur CV.</p>
+                
+                <p>Un des principaux atouts est également l'accès à un espace regroupant une grande quantité d'offres d'emploi et de stages, diffusées directement par les entreprises partenaires de l'université.</p>
+                
+                <p><strong>Ce réseau est une vraie force pour les étudiants</strong>, leur permettant de bénéficier de conseils ainsi que de créer de précieux contacts.</p>
+            </div>
+
             <div class="video-section">
-                <h3>🎥 Découvrez BDELive en vidéo</h3>
-                <a href="https://youtu.be/EUJoX3saS1o" target="_blank" class="video-link">▶ Regarder la vidéo de présentation</a>
+                <h3>🎥 Découvrez Alumni en vidéo</h3>
+                <a href="https://youtu.be/zBlPCfrK29I" target="_blank" class="video-link">▶ Regarder la première soirée Alumni à Polytech Marseille</a>
+                <p style="color: white; margin-top: 15px; font-size: 0.95rem;">La plateforme sert également de point de ralliement pour l'annonce et l'inscription à divers événements, tels que des conférences, des ateliers ou encore des afterworks.</p>
             </div>
 
-            <h2>Création d'un outil incontournable en collaboration avec le BDE</h2>
+            <h3>Service Santé Étudiant (SSE)</h3>
             
-            <div class="problem-section">
-                <p><strong>En ce moment, notre département fait face à quelques difficultés dans la gestion de l'information. On a repéré trois problèmes majeurs qui nous freinent :</strong></p>
+            <div class="service-card">
+                <p>Le Service Santé Étudiant (SSE) est un service mis en place pour accompagner la santé des étudiants tout au long de leur parcours universitaire. Son objectif principal est de garantir un accès à de nombreux domaines médicaux.</p>
                 
-                <p>D'abord, <strong>l'information est un peu partout</strong>. Sans plateforme unique, les étudiants doivent naviguer entre les mails, les réseaux sociaux et le bouche-à-oreille, ce qui devient vite illisible et compliqué à suivre.</p>
-                
-                <p>Ensuite, on dépend de <strong>tâches manuelles</strong>, des tâches qui devraient être automatisées. Pour s'inscrire aux événements du BDE, tout se fait à la main, ce qui entraîne souvent des erreurs et des infos qui se perdent.</p>
-                
-                <p>Enfin, il y a une <strong>charge administrative qui pèse sur les bénévoles</strong>. Ils passent beaucoup trop de temps sur des longues tâches, comme les émargements manuels, au détriment de la vie étudiante elle-même.</p>
-                
-                <p><strong>Résultat</strong>, un nouvel étudiant peut vite se sentir perdu ou passer à côté d'opportunités d'intégration, simplement parce qu'il n'est pas au bon endroit au bon moment.</p>
+                <h4>💰 Accès aux soins à prix réduits</h4>
+                <p>L'un des principaux avantages du SSE est l'accès aux soins à prix réduits pour les étudiants. Le service permet de bénéficier de consultations entièrement gratuites ou remboursées par la mutuelle. Ces avantages financiers nécessitent de posséder une Carte Vitale à jour et, pour certains domaines d'expertise, une mutuelle. La mise en place de ce service permet aux étudiants d'éviter d'allouer une partie de leur budget souvent serré dans les soins.</p>
             </div>
 
-            <h3>Solution au problème</h3>
+            <h4>Domaines couverts par le SSE</h4>
+            <ul>
+                <li><strong>Gynécologie et santé sexuelle :</strong> accès à des séances de gynécologie pouvant inclure un suivi régulier, mais également au dépistage des IST</li>
+                <li><strong>Psychologie :</strong> durant les moments stressants tels que les périodes de partiel, les étudiants peuvent, si besoin, profiter de séances de psychologie</li>
+                <li><strong>Tabacologie et addictologie :</strong> les étudiants souhaitant faire face à leur addiction peuvent profiter d'un accompagnement par des professionnels de santé</li>
+            </ul>
+
+            <h3>Carte ZOU ! Études : Voyagez librement</h3>
             
-            <div class="solution-section">
-                <h4>BDELive c'est quoi ?</h4>
-                <p>Afin de répondre à cette problématique, notre équipe a conçu et développé l'application "BDELive". Cette solution se présente sous la forme d'une application web complète, accessible aux étudiants, aux visiteurs et aux administrateurs du BDE. BDELive est une solution numérique centralisant la communication et l'organisation pour optimiser les interactions entre le BDE et l'ensemble des acteurs du campus.</p>
+            <div class="service-card-blue">
+                <p>Le Pass ZOU ! Études, est un abonnement annuel permettant de voyager de manière illimitée sur l'ensemble du réseau régional ZOU en région Provence-Alpes-Côte d'Azur.</p>
+                
+                <h4>🎓 Conditions d'éligibilité</h4>
+                <p>Pour bénéficier de ce pass, il faut être âgé de 3 à 25 ans et être scolarisé, étudiant, apprenti, stagiaire de la formation professionnelle, élève des formations sanitaires et sociales ou volontaire en Service Civique pour l'année 2025-2026.</p>
             </div>
 
-            <h4>À qui s'adresse BDELive ?</h4>
-            <ul>
-                <li>Les étudiants qui veulent en savoir plus sur l'établissement informatique et comment il fonctionne.</li>
-                <li>Les membres du BDE, pour une gestion simplifiée des événements et autres services.</li>
-                <li>Les administrateurs BDE pour une gestion des utilisateurs.</li>
-                <li>Les enseignants comme les étudiants, vous avez accès à tous les services du BDE.</li>
-            </ul>
+            <h4>Tarifs du Pass ZOU ! Études</h4>
+            
+            <div class="tarif-box">
+                <ul>
+                    <li><strong>Tarif plein :</strong> 90 euros / an</li>
+                    <li><strong>Tarif réduit :</strong> 45 € / an (à partir du 3ème enfant inscrit)</li>
+                    <li><strong>Tarif solidaire :</strong> 45 € par an pour les familles dont le quotient familial est inférieur ou égal à 710 €</li>
+                </ul>
+            </div>
 
-            <h4>Que peut-on faire dans BDELive ?</h4>
-            <p><strong>En tant que visiteur du site</strong>, vous avez un accès à l'essentiel du site :</p>
-            <ul>
-                <li><strong>L'équipe :</strong> Visualiser la liste des membres du BDE et leur rôle.</li>
-                <li><strong>Événement :</strong> Visualiser les événements déjà passés et ceux à venir.</li>
-                <li><strong>Actualités :</strong> Lire les articles créés par les membres du BDE ou autre acteur de l'IUT.</li>
-                <li><strong>Planning :</strong> Visualiser votre emploi du temps en fonction de votre année et groupe.</li>
-            </ul>
-
-            <p><strong>Les inscrits peuvent :</strong></p>
-            <ul>
-                <li>Se connecter, réinitialiser son mot de passe et supprimer son compte.</li>
-                <li>Modifier ses informations de profil</li>
-                <li>S'inscrire à un événement : Seul ou en groupe</li>
-                <li>Consulter des articles d'actualité sur le BDE Inform'Aix</li>
-            </ul>
-
-            <p><strong>Les administrateurs peuvent :</strong></p>
-            <ul>
-                <li>Gérer les membres : Donner des droit administrateur, bloquer des membre, ou rétrograder dès administrateur</li>
-                <li>Créer, modifier ou supprimer des événements</li>
-                <li>Créer, modifier ou supprimer des articles d'actualités</li>
-            </ul>
-
-            <p class="author-info">Rédigé par : Nasser, Mohamed Amine et Amin</p>
+            <p><strong>Avantages supplémentaires :</strong> Ce pass permet aussi de pouvoir circuler librement pendant les vacances scolaires et le week-end. On peut également s'inscrire directement en ligne, il est conseillé de s'inscrire tôt pour recevoir son titre avant la rentrée.</p>
         </div>
     </section>
 
