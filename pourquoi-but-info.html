@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pourquoi choisir BUT Informatique | Journal IUT Info</title>
-    <link rel="stylesheet" href="styles.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Bitter:wght@400;600;700&family=Source+Sans+3:wght@300;400;600;700&display=swap" rel="stylesheet">
@@ -194,11 +193,53 @@
         .project-card ul { list-style: disc; margin-left: 20px; color: #555; }
 
         /* Footer */
-        footer.main-footer { background: #333; color: #fff; padding: 40px 20px; }
-        footer h4 { margin-bottom: 10px; color: #fff; }
-        footer a { color: #fff; text-decoration: underline; }
-        footer ul { list-style: none; padding: 0; }
-        .footer-bottom { text-align: center; margin-top: 20px; font-size: 0.9rem; opacity: 0.8; }
+        footer.main-footer { 
+            background: #1a2332; 
+            color: #fff; 
+            padding: 40px 20px; 
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+        }
+
+        footer h4 { 
+            margin-bottom: 15px; 
+            color: #fff; 
+            font-family: 'Bitter', serif;
+            font-size: 1.3rem;
+        }
+
+        footer a { 
+            color: #cd76ff; 
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        footer a:hover {
+            color: #ffffff;
+        }
+
+        footer ul { 
+            list-style: none; 
+        }
+
+        footer ul li {
+            margin-bottom: 8px;
+        }
+
+        .footer-bottom { 
+            text-align: center; 
+            margin-top: 40px; 
+            padding-top: 30px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            font-size: 0.9rem; 
+            opacity: 0.8; 
+        }
 
         /* Responsive dropdown */
         @media (max-width: 768px) {
@@ -258,11 +299,12 @@
                             <li><a href="iut-terrain.html">L'IUT entre sur le terrain !</a></li>
                             <li><a href="jeux.html">Jeux </a></li>
                             <li><a href="newsletter-detente.html"> Newsletter Détente</a></li>
-                            <li><a href="tournoi-petanque.html">Tournoi de Pétanque</a></li>
+                            <li><a href="tournoi-petanque.html">Tournoi de Pétanque</a></li>             
+                            <li><a href="baisse-niveau-etudiants.html">Baisse du niveau général des étudiants</a></li>
+                            <li><a href="securite-info.html">Les gestionnaires de mots de passe </a></li>
 
                         </ul>
                     </li>
-
                     <li class="nav-item"><a href="contact.html">Contact</a></li>
                 </ul>
             </nav>
